@@ -37,7 +37,7 @@ for(Cookie cookie : cookies){
 
 				<section class="box highlight">
 					<header>
-						<h2>Tenders in Process</h2>
+						<h2>Works Completed</h2>
 					</header>
 					<br>
 					<div style="position:relative; padding-top: 10px;">
