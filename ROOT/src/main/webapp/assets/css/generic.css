@@ -12,12 +12,12 @@ h2 {display:inline;}
 .div2 {margin-top:70px;}
 .div2 li {padding-top:6px;padding-bottom:6px;}
 .green {color:Green;}
-.cn {font-family: "Courier New", Georgia;}
+.cn {font-family: "Times New Roman", Times, serif;}
 #status {display:inline-block; margin-left:26px;line-height:50px;height:50px;vertical-align:middle;}
 
 .code
 {
-    border: dashed 1px #BCBCCB; padding:8px 12px; background-color: #F3F3F9; white-space:pre; font-family:"Courier New", Georgia;
+    border: dashed 1px #BCBCCB; padding:8px 12px; background-color: #F3F3F9; white-space:pre; font-family:"Times New Roman", Times, serif;
     font-size:12px; margin:6px 0;overflow:auto; 
 }
 

@@ -279,7 +279,7 @@ left
 figure {
 	margin: 0;
 	background: #101010;
-	font-family: Istok Web, sans-serif;
+	font-family: "Times New Roman", Times, serif;
 	font-weight: 100;
 }
 
@@ -431,7 +431,7 @@ time.icon span {
 	background-image: url("images/overlay.png");
 	line-height: 1.25em;
 	text-align: center;
-	font-family: 'Open Sans Condensed', sans-serif;
+	font-family: "Times New Roman", Times, serif;
 	font-weight: 700;
 	text-transform: uppercase;
 	cursor: default;
