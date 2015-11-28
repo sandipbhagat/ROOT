@@ -770,31 +770,31 @@ var app = angular.module('swatielectrotech', [
 		                   { id: "estimatedValue", name: "Estimated Value", field: "estimatedValue", width: 240, sortable: true },
 		                   { id: "dueDate", name: "Due Date", field: "dueDate", width: 120, sortable: true },
 		                   { id: "emd", name: "EMD", field: "emd", width: 100, sortable: true },
-		                   { id: "interested", name: "Interested", field: "interested", width: 120, formatter: Slick.Formatters.Checkmark, sortable: true }
+		                   { id: "interested", name: "Interested", field: "interested", width: 120, formatter: Slick.Formatters.YesNo, sortable: true }
 		                 ];
 		    var worksColumns = [
 		                   { id: "tenderId", name: "Tender ID", field: "tenderId", width: 100, sortable: true },
-		                   { id: "id", name: "Work ID", field: "id", width: 240, sortable: true },
-		                   { id: "nameOfCustomer", name: "Name Of Customer", field: "nameOfCustomer", width: 240, sortable: true },
-		                   { id: "scopeOfWork", name: "Scope of Work", field: "scopeOfWork", width: 240, sortable: true },
-		                   { id: "workOrderStatus", name: "Status", field: "workOrderStatus", width: 240, sortable: true },
-		                   { id: "workOrderNumber", name: "Work Order Number", field: "workOrderNumber", width: 240, sortable: true },
-		                   { id: "workOrderDate", name: "Date", field: "workOrderDate", width: 100, sortable: true },
-		                   { id: "valueOfWork", name: "Value", field: "valueOfWork", width: 120, formatter: Slick.Formatters.Checkmark, sortable: true },
-		                   { id: "formalitiesCompleted", name: "Formalities Completed", field: "formalitiesCompleted", width: 240, sortable: true },
-		                   { id: "securityDepositBGAmount", name: "SD BG Amount", field: "securityDepositBGAmount", width: 240, sortable: true },
-		                   { id: "securityDepositBGDate", name: "SD BG Date", field: "securityDepositBGDate", width: 240, sortable: true },
-		                   { id: "validityOfSecurityDepositBG", name: "Validity", field: "validityOfSecurityDepositBG", width: 240, sortable: true },
-		                   { id: "dateOfWorkCompletionAsPerWorkOrder", name: "DOC Per WorkOrder", field: "dateOfWorkCompletionAsPerWorkOrder", width: 240, sortable: true },
-		                   { id: "dateOfInspection", name: "Date of Inspection", field: "dateOfInspection", width: 240, sortable: true },
-		                   { id: "dateOfMaterialDelivery", name: "Date Of Material Delivery", field: "dateOfMaterialDelivery", width: 240, sortable: true },
-		                   { id: "dateOfWorkCompletion", name: "Date Of Work Completion", field: "dateOfWorkCompletion", width: 240, sortable: true },
-		                   { id: "projectCompletedInTime", name: "Project Completed In Time", field: "projectCompletedInTime", width: 240, sortable: true },
-		                   { id: "expensesMadeAsOnDate", name: "Expenses Made As On Date", field: "expensesMadeAsOnDate", width: 240, sortable: true },
-		                   { id: "invoiceNumber", name: "Invoice Number", field: "invoiceNumber", width: 240, sortable: true },
-		                   { id: "dateOfInvoice", name: "Date Of Invoice", field: "dateOfInvoice", width: 240, sortable: true },
-		                   { id: "dateOfReceiptOfPayment", name: "Date Of Receipt Of Payment", field: "dateOfReceiptOfPayment", width: 240, sortable: true },
-		                   { id: "workCompletedInAllRespect", name: "Work Completed", field: "workCompletedInAllRespect", width: 240, sortable: true }               
+		                   { id: "id", name: "Work ID", field: "id", width: 90, sortable: true },
+		                   { id: "nameOfCustomer", name: "Name Of Customer", field: "nameOfCustomer", width: 220, sortable: true },
+		                   { id: "scopeOfWork", name: "Scope of Work", field: "scopeOfWork", width: 220, sortable: true },
+		                   { id: "workOrderStatus", name: "Status", field: "workOrderStatus", width: 150, sortable: true },
+		                   //{ id: "workOrderNumber", name: "Work Order Number", field: "workOrderNumber", width: 240, sortable: true },
+		                   { id: "workOrderDate", name: "Date", field: "workOrderDate", width: 120, sortable: true },
+		                   { id: "valueOfWork", name: "Value", field: "valueOfWork", width: 120, sortable: true },
+		                   //{ id: "formalitiesCompleted", name: "Formalities Completed", field: "formalitiesCompleted", width: 240, sortable: true },
+		                   //{ id: "securityDepositBGAmount", name: "SD BG Amount", field: "securityDepositBGAmount", width: 240, sortable: true },
+		                   //{ id: "securityDepositBGDate", name: "SD BG Date", field: "securityDepositBGDate", width: 240, sortable: true },
+		                   //{ id: "validityOfSecurityDepositBG", name: "Validity", field: "validityOfSecurityDepositBG", width: 240, sortable: true },
+		                   //{ id: "dateOfWorkCompletionAsPerWorkOrder", name: "DOC Per WorkOrder", field: "dateOfWorkCompletionAsPerWorkOrder", width: 240, sortable: true },
+		                   //{ id: "dateOfInspection", name: "Date of Inspection", field: "dateOfInspection", width: 240, sortable: true },
+		                   //{ id: "dateOfMaterialDelivery", name: "Date Of Material Delivery", field: "dateOfMaterialDelivery", width: 240, sortable: true },
+		                   //{ id: "dateOfWorkCompletion", name: "Date Of Work Completion", field: "dateOfWorkCompletion", width: 240, sortable: true },
+		                   //{ id: "projectCompletedInTime", name: "Project Completed In Time", field: "projectCompletedInTime", width: 240, sortable: true },
+		                   //{ id: "expensesMadeAsOnDate", name: "Expenses Made As On Date", field: "expensesMadeAsOnDate", width: 240, sortable: true },
+		                   //{ id: "invoiceNumber", name: "Invoice Number", field: "invoiceNumber", width: 240, sortable: true },
+		                   //{ id: "dateOfInvoice", name: "Date Of Invoice", field: "dateOfInvoice", width: 240, sortable: true },
+		                   //{ id: "dateOfReceiptOfPayment", name: "Date Of Receipt Of Payment", field: "dateOfReceiptOfPayment", width: 240, sortable: true },
+		                   { id: "workCompletedInAllRespect", name: "Work Completed", field: "workCompletedInAllRespect", width: 160,formatter: Slick.Formatters.YesNo, sortable: true }               
 		                 ];
 		    var columnFilters = {};
 

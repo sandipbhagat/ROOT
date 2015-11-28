@@ -32,7 +32,7 @@ private static final long serialVersionUID = 1L;
 	private String scopeOfWork;
 	
 	@Column(name = "workOrderStatus")
-	private Boolean workOrderStatus;
+	private String workOrderStatus;
 	
 	@Column(name = "workOrderNumber")
 	private int workOrderNumber;
@@ -117,11 +117,11 @@ private static final long serialVersionUID = 1L;
 		this.scopeOfWork = scopeOfWork;
 	}
 
-	public Boolean getWorkOrderStatus() {
+	public String getWorkOrderStatus() {
 		return workOrderStatus;
 	}
 
-	public void setWorkOrderStatus(Boolean workOrderStatus) {
+	public void setWorkOrderStatus(String workOrderStatus) {
 		this.workOrderStatus = workOrderStatus;
 	}
 

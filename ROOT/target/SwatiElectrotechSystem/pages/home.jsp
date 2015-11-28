@@ -37,7 +37,7 @@ for(Cookie cookie : cookies){
 				<!-- Highlight -->
 				<section class="box highlight">
 			 		<header>
-					<h2>My Swati Pvt. Ltd.	</h2>					
+					<h2>My Swati.	</h2>					
  					</header>
 				</section>
 
