@@ -34,7 +34,7 @@
 		  <link rel="stylesheet" href="assets/controls/slick.columnpicker.css" type="text/css"/>
 	      <link data-require="bootstrap-css@3.2.0" data-semver="3.2.0" rel="stylesheet" href="assets/css/bootstrap.min.css" />	
 	</head>
-	<body class="homepage">
+	<body class="homepage" background="images/bg.jpg">
 <%
  String username = null;
 Cookie[] cookies = request.getCookies();
