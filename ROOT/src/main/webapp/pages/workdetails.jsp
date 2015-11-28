@@ -10,7 +10,7 @@ for(Cookie cookie : cookies){
 %>
 
 <nav id="nav">
-<div class="leftNav">Swati Electrotech</div>
+<div class="leftNav">My Swati</div>
 	<ul class="rightNav">
 		<li><a href="#/">Home</a></li>
 	<%if(username != null && username !="") {%>

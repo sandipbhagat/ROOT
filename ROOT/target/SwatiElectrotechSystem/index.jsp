@@ -6,7 +6,7 @@
 -->
 <html data-ng-app="swatielectrotech" >
 	<head>
-		<title>Swati Electrotech</title>
+		<title>My Swati</title>
 		<meta charset="utf-8" />
 		<meta name="description" content="" />
 		<meta name="keyword" content=""/>
@@ -55,7 +55,7 @@ for(Cookie cookie : cookies){
 					<!-- </div> -->
 				</header>
 <nav id="nav">
-<div class="leftNav">Swati Electrotech</div>
+<div class="leftNav">My Swati</div>
 	<ul class="rightNav">
 		<li><a href="#/">Home</a></li>
 	<%if(username != null && username !="") {%>
@@ -81,7 +81,7 @@ for(Cookie cookie : cookies){
 					<!-- Copyright -->
 						<div id="copyright">
 							<ul class="menu">
-								<li>&copy; Swati Electrotech. All rights reserved</li><li>Design & Development: <a href="http://groei.in">Groei.in</a></li>
+								<li>&copy; My Swati. All rights reserved</li><li>Design & Development: <a href="http://groei.in">Groei.in</a></li>
 							</ul>
 						</div>
 

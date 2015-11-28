@@ -10,7 +10,7 @@ for(Cookie cookie : cookies){
 %>
 
 <nav id="nav">
-<div class="leftNav">Swati Electrotech</div>
+<div class="leftNav">My Swati</div>
 	<ul class="rightNav">
 		<li class="current"><a href="#/">Home</a></li>
 	<%if(username != null && username !="") {%>
@@ -37,7 +37,7 @@ for(Cookie cookie : cookies){
 				<!-- Highlight -->
 				<section class="box highlight">
 			 		<header>
-					<h2>Swati Electrotech Pvt. Ltd.	</h2>					
+					<h2>My Swati.	</h2>					
  					</header>
 				</section>
 
