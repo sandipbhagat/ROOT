@@ -19,6 +19,7 @@ for(Cookie cookie : cookies){
 		<li><a href="#/tendersinprocess">Tenders In Process</a></li>
 		<li><a href="#/worksinprocess">Works In Process</a></li>
 		<li class="current"><a href="#/workscompleted">Works Completed</a></li>
+		<li><a href="#/tendersdisqualified">Disqualified</a></li>
 		<li><a href="#">Analysis</a></li>
 		<li><a href="logout">Logout</a></li>
 		<%} else { %>
@@ -30,7 +31,7 @@ for(Cookie cookie : cookies){
 <!-- Banner -->
 
 <!-- Main -->
-<div id="main-wrapper" ng-controller="worksCtrl">
+<div id="main-wrapper" ng-controller="worksCompletedCtrl">
 	<div id="main" class="container">
 		<div class="row 200%">
 			<div class="12u">

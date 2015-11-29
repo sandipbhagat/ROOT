@@ -16,9 +16,10 @@ for(Cookie cookie : cookies){
 	<%if(username != null && username !="") {%>
 		<li><a href="#/employeepanel">Dashboard</a></li>
 		<li><a href="#/newtenders">New Tenders</a></li>
-		<li class="current"><a href="#/tendersinprocess">Tenders In Process</a></li>
+		<li><a href="#/tendersinprocess">Tenders In Process</a></li>
 		<li><a href="#/worksinprocess">Works In Process</a></li>
 		<li><a href="#/workscompleted">Works Completed</a></li>
+		<li  class="current"><a href="#/tendersdisqualified">Disqualified</a></li>
 		<li><a href="#">Analysis</a></li>
 		<li><a href="logout">Logout</a></li>
 		<%} else { %>
@@ -37,7 +38,7 @@ for(Cookie cookie : cookies){
 
 				<section class="box highlight">
 					<header>
-						<h2>Tenders in Process</h2>
+						<h2>Tenders DisQualified</h2>
 					</header>
 					<br>
 					<div style="position:relative; padding-top: 10px;">

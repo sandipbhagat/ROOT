@@ -75,8 +75,8 @@ for(Cookie cookie : cookies){
 						<label> </label> 
 						
 						<label for="interested">Interested?<font color="red">*</font></label> 
-						<input type="checkbox" name="interested" class="form-control"
-							id="interested" ng-model=selectedTender.interested 
+						<input type="checkbox" name="interested" class="form-control" 
+							id="interested" required="required" ng-model=selectedTender.interested 
 							placeholder="Interested"> <label> </label>
 							
 						<label for="statusOfTender">Status Of tender<font color="red">*</font></label>

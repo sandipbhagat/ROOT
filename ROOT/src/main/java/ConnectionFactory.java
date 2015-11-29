@@ -8,14 +8,11 @@ public class ConnectionFactory {
     //static reference to itself
     private static ConnectionFactory instance = 
                 new ConnectionFactory();
-    /*String url = "jdbc:mysql://127.7.254.2:3306/olwebdirectory";
-    String user = "adminVEDaqfs";
-    String password = "S8KSYXVF8ED-";
-    */ String url = "jdbc:mysql://127.10.167.2:3306/swatielectrotech";
-/*     String user = "adminYyUfmiv";
-     String password = "Jd-SQzmcYgD3";*/
-    String user = "root";
-    String password = "";
+ String url = "jdbc:mysql://127.10.167.2:3306/swatielectrotech";
+     String user = "adminYyUfmiv";
+     String password = "Jd-SQzmcYgD3";
+/*    String user = "root";
+    String password = "";*/
     String driverClass = "com.mysql.jdbc.Driver"; 
      
     //private constructor
