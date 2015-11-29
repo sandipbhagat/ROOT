@@ -15,7 +15,7 @@ for(Cookie cookie : cookies){
 		<li><a href="#/">Home</a></li>
 		<%if(username != null && username !="") {%>
 		<li><a href="#/employeepanel">Dashboard</a></li>
-		<li class="current"><a href="#/newtenders">New Tenders</a></li>
+		<li><a href="#/newtenders">New Tenders</a></li>
 		<li><a href="#/tendersinprocess">Tenders In Process</a></li>
 		<li><a href="#/worksinprocess">Works In Process</a></li>
 		<li><a href="#/workscompleted">Works Completed</a></li>
