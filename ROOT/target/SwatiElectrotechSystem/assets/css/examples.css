@@ -19,6 +19,7 @@ ul {
   margin-left: 0;
   padding: 0;
   cursor: default;
+  font-size: small;
 }
 
 li {

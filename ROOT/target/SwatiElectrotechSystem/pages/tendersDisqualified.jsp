@@ -16,10 +16,9 @@ for(Cookie cookie : cookies){
 	<%if(username != null && username !="") {%>
 		<li><a href="#/employeepanel">Dashboard</a></li>
 		<li><a href="#/newtenders">New Tenders</a></li>
-		<li><a href="#/tendersinprocess">Tenders In Process</a></li>
-		<li class="current"><a href="#/worksinprocess">Works In Process</a></li>
+		<li class="current"><a href="#/tendersinprocess">Tenders In Process</a></li>
+		<li><a href="#/worksinprocess">Works In Process</a></li>
 		<li><a href="#/workscompleted">Works Completed</a></li>
-		<li><a href="#/tendersdisqualified">Disqualified</a></li>
 		<li><a href="#">Analysis</a></li>
 		<li><a href="logout">Logout</a></li>
 		<%} else { %>
@@ -31,19 +30,19 @@ for(Cookie cookie : cookies){
 <!-- Banner -->
 
 <!-- Main -->
-<div id="main-wrapper" ng-controller="worksCtrl">
+<div id="main-wrapper" ng-controller="tendersDisqualifiedCtrl">
 	<div id="main" class="container">
 		<div class="row 200%">
 			<div class="12u">
 
 				<section class="box highlight">
 					<header>
-						<h2>Works in Process</h2>
+						<h2>Tenders in Process</h2>
 					</header>
 					<br>
 					<div style="position:relative; padding-top: 10px;">
 					  <div style="width:1200px;">
-					    <div id="worksGrid" style="width:100%;height:500px;"></div>
+					    <div id="tendersDisqualifiedGrid" style="width:100%;height:500px;"></div>
 					    <div id="pager" style="width:100%;height:20px;"></div>
 					  </div>
 					</div>

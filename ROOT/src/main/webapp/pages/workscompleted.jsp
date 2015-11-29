@@ -19,6 +19,7 @@ for(Cookie cookie : cookies){
 		<li><a href="#/tendersinprocess">Tenders In Process</a></li>
 		<li><a href="#/worksinprocess">Works In Process</a></li>
 		<li class="current"><a href="#/workscompleted">Works Completed</a></li>
+		<li><a href="#/tendersdisqualified">Disqualified</a></li>
 		<li><a href="#">Analysis</a></li>
 		<li><a href="logout">Logout</a></li>
 		<%} else { %>

@@ -544,6 +544,12 @@ time.icon span {
   border: 1px solid gray;
 }
 
+#tendersDisqualifiedGrid {
+  background: white;
+  outline: 0;
+  border: 1px solid gray;
+}
+
 .slick-headerrow {
 	background: #ff8080 !important;
 }

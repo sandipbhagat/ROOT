@@ -109,6 +109,7 @@ var app = angular.module('swatielectrotech', [
                                      .when("/updatetender", {templateUrl: "pages/updatetender.jsp", controller: "tenderDetailsCtrl"})
                                      .when("/newtenders", {templateUrl: "pages/newtenders.jsp", controller: "NewTendersCtrl"})
                                      .when("/tendersinprocess", {templateUrl: "pages/tendersinprocess.jsp", controller: "tendersInProcessCtrl"})
+                                     .when("/tendersdisqualified", {templateUrl: "pages/tendersDisqualified.jsp", controller: "tendersDisqualifiedCtrl"})
                                      .when("/tenderDetails", {templateUrl: "pages/tenderdetails.jsp", controller: "tenderDetailsCtrl"})
                                      .when("/workDetails", {templateUrl: "pages/workdetails.jsp", controller: "workDetailsCtrl"})
                                      .when("/worksinprocess", {templateUrl: "pages/worksinprocess.jsp", controller: "worksCtrl"})
@@ -1107,6 +1108,176 @@ var app = angular.module('swatielectrotech', [
 		    
 	    }])	    	    
 
+app.controller('tendersDisqualifiedCtrl', ['$scope','$http','$location', 'tenderService', function( $scope, $http, $location, tenderService) {
+
+		  $scope.exportTendersData = function() {		         
+		                 alasql('SELECT * INTO XLSX("TendersDataExport.xlsx",{headers:true}) FROM ?',[$scope.collection]);		        
+		  };
+		  
+		  $scope.selectedTender = tenderService.get();
+		  
+		  $scope.viewTenderDetails = function (item) {
+			  tenderService.set(item),
+			  $location.path('/tenderDetails');			 
+		    };
+		 
+		 //Slick Grid Code
+
+		    var dataView;
+		    var grid;
+		    var data = [];
+		   
+		    var options = {
+		      enableCellNavigation: true,
+		      showHeaderRow: true,
+		      headerRowHeight: 40,
+		      multiColumnSort: true,
+		      explicitInitialization: true
+		    },
+		    indices, isAsc = true, currentSortCol = { id: "title" };
+		    
+		    function viewformatter(row, cell, value, columnDef, dataContext) {
+		        return value;
+		    }
+		    
+		    function deleteformatter(row, cell, value, columnDef, dataContext) {
+		        return value;
+		    }
+
+		    var columns = [
+		                   { id: "id", name: "Tender ID", field: "id", width: 100, sortable: true },
+		                   { id: "nameOfCustomer", name: "Name Of Customer", field: "nameOfCustomer", width: 240, sortable: true },
+		                   { id: "scopeOfWork", name: "Scope of Work", field: "scopeOfWork", width: 240, sortable: true },
+		                  /* { id: "estimatedValue", name: "Estimated Value", field: "estimatedValue", width: 240, sortable: true },
+		                   { id: "dueDate", name: "Due Date", field: "dueDate", width: 120, sortable: true },
+		                   { id: "emd", name: "EMD", field: "emd", width: 100, sortable: true },
+		                   { id: "interested", name: "Interested", field: "interested", width: 120, formatter: Slick.Formatters.Checkmark, sortable: true },
+		                   { id: "statusOfTender", name: "Status", field: "statusOfTender", width: 240, sortable: true },
+		                   { id: "systemEnteredDate", name: "Entered Date", field: "systemEnteredDate", width: 240, sortable: true },
+		                   { id: "tenderSubmitted", name: "Submitted", field: "tenderSubmitted", width: 240, sortable: true },
+		                   { id: "submittedDate", name: "Submitted Date", field: "submittedDate", width: 240, sortable: true },
+		                   { id: "technicalBidOpened", name: "Tech Bid Opened", field: "technicalBidOpened", width: 240, sortable: true },
+		                   { id: "technicalBidOpeningDate", name: "Tech Bid Opening Date", field: "technicalBidOpeningDate", width: 280, sortable: true },
+		                   { id: "technicallyQualified", name: "Tech Qualified", field: "technicallyQualified", width: 240, sortable: true },
+		                   { id: "priceBidOpened", name: "Price Bid Opened", field: "priceBidOpened", width: 240, sortable: true },
+		                   { id: "priceBidOpeningDate", name: "Price Bid Opening Date", field: "priceBidOpeningDate", width: 240, sortable: true },
+		                   { id: "lowestBidder", name: "Lowest Bidder", field: "lowestBidder", width: 240, sortable: true },*/
+		                   { id: "view", name: "Details", field: "view", width: 120, formatter: viewformatter},
+		                   { id: "deleteTender", name: "Delete", field: "deleteTender", width: 120, formatter: deleteformatter}
+		                 ];
+		    var columnFilters = {};
+
+		    function filter(item) {
+		      for (var columnId in columnFilters) {
+		        if (columnId !== undefined && columnFilters[columnId] !== "") {
+		          var c = grid.getColumns()[grid.getColumnIndex(columnId)];
+		          if ( ! (item[c.field].toString().toLowerCase().indexOf(columnFilters[columnId].toString().toLowerCase())  > -1 ) ) {
+		            return false;
+		          }
+		        }
+		      }
+		      return true;
+		    }
+
+		      $.getJSON('/tender/disqualified/list', function(data) {
+
+		    	  		dataView = new Slick.Data.DataView();
+					      
+					      grid = new Slick.Grid("#tendersDisqualifiedGrid", dataView, columns, options);
+					      dataView.onRowCountChanged.subscribe(function (e, args) {
+					        grid.updateRowCount();
+					        grid.render();
+					      });
+					      dataView.onRowsChanged.subscribe(function (e, args) {
+					        grid.invalidateRows(args.rows);
+					        grid.render();
+					      });
+					      $(grid.getHeaderRow()).delegate(":input", "change keyup", function (e) {
+					        var columnId = $(this).data("columnId");
+					        if (columnId != null) {
+					          columnFilters[columnId] = $.trim($(this).val());
+					          dataView.refresh();
+					        }
+					      });
+					      grid.onHeaderRowCellRendered.subscribe(function(e, args) {
+					          $(args.node).empty();
+					          $("<input type='text'>")
+					             .data("columnId", args.column.id)
+					             .val(columnFilters[args.column.id])
+					             .appendTo(args.node);
+					      });
+					  		    
+					      var pager = new Slick.Controls.Pager(dataView, grid, $("#pager"));
+
+					      
+					      grid.onSort.subscribe(function (e, args) {
+					    	  sortcol = args.sortCols[0].sortCol.field;
+					    	  dataView.sort(comparer, args.sortCols[0].sortAsc);
+					    	});
+
+					    	function comparer(a, b) {
+					    	  var x = a[sortcol], y = b[sortcol];
+					    	  return (x == y ? 0 : (x > y ? 1 : -1));
+					    	}
+					    	
+						      var gridData = [];
+						      
+						      for(var i=0; i < data.length; i++ )
+						    	  {
+						    	  		gridData[i] = {
+						    	  			id : data[i].id,
+						    	  			nameOfCustomer : data[i].nameOfCustomer,
+						    	  			scopeOfWork : data[i].scopeOfWork,
+/*						    	  			estimatedValue : data[i].estimatedValue,
+						    	  			dueDate : data[i].dueDate,
+						    	  			emd : data[i].emd,
+						    	  			interested : data[i].interested,
+											statusOfTender: data[i].statusOfTender,
+											systemEnteredDate: data[i].systemEnteredDate,
+											tenderSubmitted: data[i].tenderSubmitted,
+											submittedDate: data[i].submittedDate,
+											technicalBidOpened: data[i].technicalBidOpened,
+											technicalBidOpeningDate: data[i].technicalBidOpeningDate,
+											technicallyQualified: data[i].technicallyQualified,
+											priceBidOpened: data[i].priceBidOpened,
+											priceBidOpeningDate: data[i].priceBidOpeningDate,
+											lowestBidder: data[i].lowestBidder,*/
+						    	  			view : "<a href='#/tenderDetails' class='viewButton' tabindex='0'>View</a>",
+						    	  			deleteTender : "<a href='#/newtenders' class='deleteButton' tabindex='0'>Delete</a>"
+						    	  		};
+						    	  }
+						      
+						      grid.onClick.subscribe(function(e,args) {
+						    	  	   var item = data[args.row]; //args.grid.getDataItem(args.row);
+						    	  	 if (args.cell == grid.getColumnIndex('view'))
+						    		   $scope.viewTenderDetails(item);
+						    	  	 
+						    	  	 if (args.cell == grid.getColumnIndex('deleteTender'))
+						    	  		 {
+						    	  		$http({
+						    	  		  method: 'GET',
+						    	  		  url: '/tender/delete/'+item.id
+						    	  		}).then(function successCallback(response) {
+						    	  			alert("Tender Successfully Deleted !!");	
+						    	  			$route.reload();
+						    	  		  }, function errorCallback(response) {
+						    	  			alert("Failed to Delete !!");	
+						    	  		  });
+						    	  		 }
+						    	});
+
+					      
+					    	grid.init();
+				    	    dataView.beginUpdate();
+				    	    dataView.setItems(gridData);
+				    	    dataView.setFilter(filter);
+				    	    dataView.endUpdate();
+
+		    });
+		    //Slick Grid Ends
+		    
+	    }])	 
+	    
 	  app.controller('worksCtrl', ['$scope','$http','$location', 'workService', function( $scope, $http, $location, workService) {
 
 		  $scope.exportTendersData = function() {		         
