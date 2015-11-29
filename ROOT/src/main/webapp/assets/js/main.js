@@ -976,24 +976,24 @@ var app = angular.module('swatielectrotech', [
 
 		    var columns = [
 		                   { id: "id", name: "Tender ID", field: "id", width: 100, sortable: true },
-		                   { id: "nameOfCustomer", name: "Name Of Customer", field: "nameOfCustomer", width: 240, sortable: true },
-		                   { id: "scopeOfWork", name: "Scope of Work", field: "scopeOfWork", width: 240, sortable: true },
-		                   { id: "estimatedValue", name: "Estimated Value", field: "estimatedValue", width: 240, sortable: true },
-		                   { id: "dueDate", name: "Due Date", field: "dueDate", width: 120, sortable: true },
-		                   { id: "emd", name: "EMD", field: "emd", width: 100, sortable: true },
-		                   { id: "interested", name: "Interested", field: "interested", width: 120, formatter: Slick.Formatters.Checkmark, sortable: true },
-		                   { id: "statusOfTender", name: "Status", field: "statusOfTender", width: 240, sortable: true },
-		                   { id: "systemEnteredDate", name: "Entered Date", field: "systemEnteredDate", width: 240, sortable: true },
-		                   { id: "tenderSubmitted", name: "Submitted", field: "tenderSubmitted", width: 240, sortable: true },
-		                   { id: "submittedDate", name: "Submitted Date", field: "submittedDate", width: 240, sortable: true },
-		                   { id: "technicalBidOpened", name: "Tech Bid Opened", field: "technicalBidOpened", width: 240, sortable: true },
-		                   { id: "technicalBidOpeningDate", name: "Tech Bid Opening Date", field: "technicalBidOpeningDate", width: 280, sortable: true },
-		                   { id: "technicallyQualified", name: "Tech Qualified", field: "technicallyQualified", width: 240, sortable: true },
-		                   { id: "priceBidOpened", name: "Price Bid Opened", field: "priceBidOpened", width: 240, sortable: true },
-		                   { id: "priceBidOpeningDate", name: "Price Bid Opening Date", field: "priceBidOpeningDate", width: 240, sortable: true },
-		                   { id: "lowestBidder", name: "Lowest Bidder", field: "lowestBidder", width: 240, sortable: true },
-		                   { id: "view", name: "Details", field: "view", width: 120, formatter: viewformatter},
-		                   { id: "deleteTender", name: "Delete", field: "deleteTender", width: 120, formatter: deleteformatter}
+		                   { id: "nameOfCustomer", name: "Name Of Customer", field: "nameOfCustomer", width: 220, sortable: true },
+		                   { id: "scopeOfWork", name: "Scope of Work", field: "scopeOfWork", width: 220, sortable: true },
+		                   { id: "estimatedValue", name: "Estimated Value", field: "estimatedValue", width: 150, sortable: true },
+		                   //{ id: "dueDate", name: "Due Date", field: "dueDate", width: 120, sortable: true },
+		                   //{ id: "emd", name: "EMD", field: "emd", width: 100, sortable: true },
+		                   //{ id: "interested", name: "Interested", field: "interested", width: 120, formatter: Slick.Formatters.Checkmark, sortable: true },
+		                   { id: "statusOfTender", name: "Status", field: "statusOfTender", width: 180, sortable: true },
+		                   { id: "systemEnteredDate", name: "Entered Date", field: "systemEnteredDate", width: 130, sortable: true },
+		                   //{ id: "tenderSubmitted", name: "Submitted", field: "tenderSubmitted", width: 240, sortable: true },
+		                   //{ id: "submittedDate", name: "Submitted Date", field: "submittedDate", width: 240, sortable: true },
+		                   //{ id: "technicalBidOpened", name: "Tech Bid Opened", field: "technicalBidOpened", width: 240, sortable: true },
+		                   //{ id: "technicalBidOpeningDate", name: "Tech Bid Opening Date", field: "technicalBidOpeningDate", width: 280, sortable: true },
+		                   { id: "technicallyQualified", name: "Tech Qualified", field: "technicallyQualified", width: 150, formatter: Slick.Formatters.YesNo, sortable: true },
+		                   { id: "priceBidOpened", name: "Price Bid Opened", field: "priceBidOpened", width: 160,formatter: Slick.Formatters.YesNo, sortable: true },
+		                   //{ id: "priceBidOpeningDate", name: "Price Bid Opening Date", field: "priceBidOpeningDate", width: 240, sortable: true },
+		                   { id: "lowestBidder", name: "Lowest Bidder", field: "lowestBidder", width: 150, sortable: true },
+		                   { id: "view", name: "Details", field: "view", width: 100, formatter: viewformatter},
+		                   { id: "deleteTender", name: "Delete", field: "deleteTender", width: 100, formatter: deleteformatter}
 		                 ];
 		    var columnFilters = {};
 
