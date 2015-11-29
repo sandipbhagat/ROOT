@@ -56,6 +56,11 @@ public class TenderServicesImpl implements TenderServices {
 	public List<Tender> getTenderInProcessList() throws Exception {
 		return tenderDao.getTenderInProcessList();
 	}
+	
+	@Override
+	public List<Tender> getTenderDisqualifiedList() throws Exception {
+		return tenderDao.getTenderDisqualifiedList();
+	}
 
 	@Override
 	public List<Party> getParties(int id) throws Exception {

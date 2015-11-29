@@ -16,6 +16,7 @@ public interface TenderServices {
 	public boolean deleteTender(int id) throws Exception;
 	public boolean updateTender(Tender tender) throws Exception;
 	public List<Tender> getTenderInProcessList() throws Exception;
+	public List<Tender> getTenderDisqualifiedList() throws Exception;
 	
 	public List<Party> getParties(int id) throws Exception;
 	public boolean addOrUpdateParty(Party party) throws Exception;

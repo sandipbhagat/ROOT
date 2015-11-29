@@ -89,6 +89,16 @@ public class TenderDaoImpl implements TenderDao {
 		session = this.sessionFactory.getCurrentSession();
 		Criteria criteria = session.createCriteria(Tender.class);
 		criteria.add(Restrictions.eq("tenderSubmitted", true));
+		criteria.add(Restrictions.isNull("lowestBidder"));
+		List<Tender> listOfTenders = (List<Tender>) criteria.list();
+		return listOfTenders;
+	}
+	
+	@Override
+	public List<Tender> getTenderDisqualifiedList() {
+		session = this.sessionFactory.getCurrentSession();
+		Criteria criteria = session.createCriteria(Tender.class);
+		criteria.add(Restrictions.eq("tenderSubmitted", true));
 		criteria.add(Restrictions.eq("lowestBidder", false));
 		List<Tender> listOfTenders = (List<Tender>) criteria.list();
 		return listOfTenders;

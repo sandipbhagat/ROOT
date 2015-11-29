@@ -46,7 +46,8 @@ for(Cookie cookie : cookies){
 
 					<a href='#/updatetender' class='Button' tabindex='0'>Edit this
 						Tender !</a>
-					<table style="text-align: center;">
+						
+					<table>
 						<tr>
 							<td>Tender Id</td>
 							<td>{{selectedTender.id}}</td>

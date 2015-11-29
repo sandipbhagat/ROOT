@@ -18,6 +18,7 @@ public interface TenderDao {
 	public List<Person> getPersonDetailsById(int id);
 	public List<Document> getDocumentsById(int id);
 	public List<Tender> getTenderInProcessList();
+	public List<Tender> getTenderDisqualifiedList();
 	public List<Party> getParties(int id);
 	public boolean addOrUpdateParty(Party party);
 	public boolean deleteParty(int id);

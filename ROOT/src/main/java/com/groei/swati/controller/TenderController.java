@@ -94,6 +94,21 @@ public class TenderController {
 
 		return tenderList;
 	}
+	
+	@RequestMapping(value = "/disqualified/list", method = RequestMethod.GET)
+	public @ResponseBody
+	List<Tender> getTenderDisqualifiedList() {
+
+		List<Tender> tenderList = null;
+		try {
+			tenderList = tenderServices.getTenderDisqualifiedList();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return tenderList;
+	}
 
 
 	@RequestMapping(value = "delete/{id}", method = RequestMethod.GET)

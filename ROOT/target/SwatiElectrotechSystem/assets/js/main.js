@@ -774,10 +774,10 @@ var app = angular.module('swatielectrotech', [
 		                 ];
 		    var worksColumns = [
 		                   { id: "tenderId", name: "Tender ID", field: "tenderId", width: 100, sortable: true },
-		                   { id: "id", name: "Work ID", field: "id", width: 100, sortable: true },
-		                   { id: "nameOfCustomer", name: "Name Of Customer", field: "nameOfCustomer", width: 240, sortable: true },
-		                   { id: "scopeOfWork", name: "Scope of Work", field: "scopeOfWork", width: 240, sortable: true },
-		                   { id: "workOrderStatus", name: "Status", field: "workOrderStatus", width: 240,formatter: Slick.Formatters.YesNo, sortable: true },
+		                   { id: "id", name: "Work ID", field: "id", width: 90, sortable: true },
+		                   { id: "nameOfCustomer", name: "Name Of Customer", field: "nameOfCustomer", width: 220, sortable: true },
+		                   { id: "scopeOfWork", name: "Scope of Work", field: "scopeOfWork", width: 220, sortable: true },
+		                   { id: "workOrderStatus", name: "Status", field: "workOrderStatus", width: 150, sortable: true },
 		                   //{ id: "workOrderNumber", name: "Work Order Number", field: "workOrderNumber", width: 240, sortable: true },
 		                   { id: "workOrderDate", name: "Date", field: "workOrderDate", width: 120, sortable: true },
 		                   { id: "valueOfWork", name: "Value", field: "valueOfWork", width: 120, sortable: true },
@@ -794,7 +794,7 @@ var app = angular.module('swatielectrotech', [
 		                   //{ id: "invoiceNumber", name: "Invoice Number", field: "invoiceNumber", width: 240, sortable: true },
 		                   //{ id: "dateOfInvoice", name: "Date Of Invoice", field: "dateOfInvoice", width: 240, sortable: true },
 		                   //{ id: "dateOfReceiptOfPayment", name: "Date Of Receipt Of Payment", field: "dateOfReceiptOfPayment", width: 240, sortable: true },
-		                   { id: "workCompletedInAllRespect", name: "Work Completed", field: "workCompletedInAllRespect", width: 200,formatter: Slick.Formatters.YesNo, sortable: true }               
+		                   { id: "workCompletedInAllRespect", name: "Work Completed", field: "workCompletedInAllRespect", width: 160,formatter: Slick.Formatters.YesNo, sortable: true }               
 		                 ];
 		    var columnFilters = {};
 
