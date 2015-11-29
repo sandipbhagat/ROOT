@@ -938,7 +938,7 @@ var app = angular.module('swatielectrotech', [
 		    
 	    }])	    	    
 
-	  app.controller('tendersInProcessCtrl', ['$scope','$http','$location', 'tenderService', function( $scope, $http, $location, tenderService) {
+	  app.controller('tendersInProcessCtrl', ['$scope','$http','$route','$location', 'tenderService', function( $scope, $http, $route, $location, tenderService) {
 
 		  $scope.exportTendersData = function() {		         
 		                 alasql('SELECT * INTO XLSX("TendersDataExport.xlsx",{headers:true}) FROM ?',[$scope.collection]);		        
@@ -1108,7 +1108,7 @@ var app = angular.module('swatielectrotech', [
 		    
 	    }])	    	    
 
-app.controller('tendersDisqualifiedCtrl', ['$scope','$http','$location', 'tenderService', function( $scope, $http, $location, tenderService) {
+app.controller('tendersDisqualifiedCtrl', ['$scope','$http', '$route','$location', 'tenderService', function( $scope, $http, $route, $location, tenderService) {
 
 		  $scope.exportTendersData = function() {		         
 		                 alasql('SELECT * INTO XLSX("TendersDataExport.xlsx",{headers:true}) FROM ?',[$scope.collection]);		        
@@ -1243,7 +1243,7 @@ app.controller('tendersDisqualifiedCtrl', ['$scope','$http','$location', 'tender
 											priceBidOpeningDate: data[i].priceBidOpeningDate,
 											lowestBidder: data[i].lowestBidder,*/
 						    	  			view : "<a href='#/tenderDetails' class='viewButton' tabindex='0'>View</a>",
-						    	  			deleteTender : "<a href='#/newtenders' class='deleteButton' tabindex='0'>Delete</a>"
+						    	  			deleteTender : "<a href='#/tendersdisqualified' class='deleteButton' tabindex='0'>Delete</a>"
 						    	  		};
 						    	  }
 						      
@@ -1278,7 +1278,7 @@ app.controller('tendersDisqualifiedCtrl', ['$scope','$http','$location', 'tender
 		    
 	    }])	 
 	    
-	  app.controller('worksCtrl', ['$scope','$http','$location', 'workService', function( $scope, $http, $location, workService) {
+	  app.controller('worksCtrl', ['$scope','$http', '$route','$location', 'workService', function( $scope, $http, $route, $location, workService) {
 
 		  $scope.exportTendersData = function() {		         
 		                 alasql('SELECT * INTO XLSX("TendersDataExport.xlsx",{headers:true}) FROM ?',[$scope.collection]);		        
@@ -1441,7 +1441,7 @@ app.controller('tendersDisqualifiedCtrl', ['$scope','$http','$location', 'tender
 					    	  		 {
 					    	  		$http({
 					    	  		  method: 'GET',
-					    	  		  url: '/work/delete/'+item.workdId
+					    	  		  url: '/work/delete/'+item.id
 					    	  		}).then(function successCallback(response) {
 					    	  			alert("Work Successfully Deleted !!");	
 					    	  			$route.reload();
@@ -1463,17 +1463,17 @@ app.controller('tendersDisqualifiedCtrl', ['$scope','$http','$location', 'tender
 		    
 	    }])	    	    
 	    
-	app.controller('worksCompletedCtrl', ['$scope','$http','$location', 'tenderService', function( $scope, $http, $location, tenderService) {
+	app.controller('worksCompletedCtrl', ['$scope','$http', '$route','$location', 'workService', function( $scope, $http, $route, $location, workService) {
 
 		  $scope.exportTendersData = function() {		         
 		                 alasql('SELECT * INTO XLSX("TendersDataExport.xlsx",{headers:true}) FROM ?',[$scope.collection]);		        
 		  };
 		  
-		  $scope.selectedTender = tenderService.get();
+		  $scope.selectedWork = workService.get();
 		  
-		  $scope.viewTenderDetails = function (item) {
-			  tenderService.set(item),
-			  $location.path('/tenderDetails');			 
+		  $scope.viewWorkDetails = function (item) {
+			  workService.set(item),
+			  $location.path('/workDetails');			 
 		    };
 		 
 		 //Slick Grid Code
@@ -1490,30 +1490,40 @@ app.controller('tendersDisqualifiedCtrl', ['$scope','$http','$location', 'tender
 		      explicitInitialization: true
 		    },
 		    indices, isAsc = true, currentSortCol = { id: "title" };
+		    
+		    function viewformatter(row, cell, value, columnDef, dataContext) {
+		        return value;
+		    }
+		    
+		    function deleteformatter(row, cell, value, columnDef, dataContext) {
+		        return value;
+		    }
 
 		    var worksColumns = [
 		                   { id: "tenderId", name: "Tender ID", field: "tenderId", width: 100, sortable: true },
-		                   { id: "id", name: "Work ID", field: "id", width: 240, sortable: true },
-		                   { id: "nameOfCustomer", name: "Name Of Customer", field: "nameOfCustomer", width: 240, sortable: true },
-		                   { id: "scopeOfWork", name: "Scope of Work", field: "scopeOfWork", width: 240, sortable: true },
-		                   { id: "workOrderStatus", name: "Status", field: "workOrderStatus", width: 240, sortable: true },
-		                   { id: "workOrderNumber", name: "Work Order Number", field: "workOrderNumber", width: 240, sortable: true },
-		                   { id: "workOrderDate", name: "Date", field: "workOrderDate", width: 100, sortable: true },
-		                   { id: "valueOfWork", name: "Value", field: "valueOfWork", width: 120, formatter: Slick.Formatters.Checkmark, sortable: true },
-		                   { id: "formalitiesCompleted", name: "Formalities Completed", field: "formalitiesCompleted", width: 240, sortable: true },
-		                   { id: "securityDepositBGAmount", name: "SD BG Amount", field: "securityDepositBGAmount", width: 240, sortable: true },
-		                   { id: "securityDepositBGDate", name: "SD BG Date", field: "securityDepositBGDate", width: 240, sortable: true },
-		                   { id: "validityOfSecurityDepositBG", name: "Validity", field: "validityOfSecurityDepositBG", width: 240, sortable: true },
-		                   { id: "dateOfWorkCompletionAsPerWorkOrder", name: "DOC Per WorkOrder", field: "dateOfWorkCompletionAsPerWorkOrder", width: 240, sortable: true },
-		                   { id: "dateOfInspection", name: "Date of Inspection", field: "dateOfInspection", width: 240, sortable: true },
-		                   { id: "dateOfMaterialDelivery", name: "Date Of Material Delivery", field: "dateOfMaterialDelivery", width: 240, sortable: true },
-		                   { id: "dateOfWorkCompletion", name: "Date Of Work Completion", field: "dateOfWorkCompletion", width: 240, sortable: true },
-		                   { id: "projectCompletedInTime", name: "Project Completed In Time", field: "projectCompletedInTime", width: 240, sortable: true },
-		                   { id: "expensesMadeAsOnDate", name: "Expenses Made As On Date", field: "expensesMadeAsOnDate", width: 240, sortable: true },
-		                   { id: "invoiceNumber", name: "Invoice Number", field: "invoiceNumber", width: 240, sortable: true },
-		                   { id: "dateOfInvoice", name: "Date Of Invoice", field: "dateOfInvoice", width: 240, sortable: true },
-		                   { id: "dateOfReceiptOfPayment", name: "Date Of Receipt Of Payment", field: "dateOfReceiptOfPayment", width: 240, sortable: true },
-		                   { id: "workCompletedInAllRespect", name: "Work Completed", field: "workCompletedInAllRespect", width: 240, sortable: true }               
+		                   { id: "id", name: "Work ID", field: "id", width: 100, sortable: true },
+		                   { id: "nameOfCustomer", name: "Name Of Customer", field: "nameOfCustomer", width: 220, sortable: true },
+		                   { id: "scopeOfWork", name: "Scope of Work", field: "scopeOfWork", width: 220, sortable: true },
+		                   //{ id: "workOrderStatus", name: "Status", field: "workOrderStatus", width: 240, sortable: true },
+		                   //{ id: "workOrderNumber", name: "Work Order Number", field: "workOrderNumber", width: 240, sortable: true },
+		                   //{ id: "workOrderDate", name: "Date", field: "workOrderDate", width: 100, sortable: true },
+		                   { id: "valueOfWork", name: "Value", field: "valueOfWork", width: 120, sortable: true },
+		                   //{ id: "formalitiesCompleted", name: "Formalities Completed", field: "formalitiesCompleted", width: 240, sortable: true },
+		                   //{ id: "securityDepositBGAmount", name: "SD BG Amount", field: "securityDepositBGAmount", width: 240, sortable: true },
+		                   //{ id: "securityDepositBGDate", name: "SD BG Date", field: "securityDepositBGDate", width: 240, sortable: true },
+		                   //{ id: "validityOfSecurityDepositBG", name: "Validity", field: "validityOfSecurityDepositBG", width: 240, sortable: true },
+		                   //{ id: "dateOfWorkCompletionAsPerWorkOrder", name: "DOC Per WorkOrder", field: "dateOfWorkCompletionAsPerWorkOrder", width: 240, sortable: true },
+		                   //{ id: "dateOfInspection", name: "Date of Inspection", field: "dateOfInspection", width: 240, sortable: true },
+		                   //{ id: "dateOfMaterialDelivery", name: "Date Of Material Delivery", field: "dateOfMaterialDelivery", width: 240, sortable: true },
+		                   { id: "dateOfWorkCompletion", name: "Date Of Work Completion", field: "dateOfWorkCompletion", width: 230, sortable: true },
+		                   //{ id: "projectCompletedInTime", name: "Project Completed In Time", field: "projectCompletedInTime", width: 240, sortable: true },
+		                   //{ id: "expensesMadeAsOnDate", name: "Expenses Made As On Date", field: "expensesMadeAsOnDate", width: 240, sortable: true },
+		                   //{ id: "invoiceNumber", name: "Invoice Number", field: "invoiceNumber", width: 240, sortable: true },
+		                   //{ id: "dateOfInvoice", name: "Date Of Invoice", field: "dateOfInvoice", width: 240, sortable: true },
+		                   //{ id: "dateOfReceiptOfPayment", name: "Date Of Receipt Of Payment", field: "dateOfReceiptOfPayment", width: 240, sortable: true },
+		                   //{ id: "workCompletedInAllRespect", name: "Work Completed", field: "workCompletedInAllRespect", width: 240, sortable: true }
+		                   { id: "view", name: "Details", field: "view", width: 100, formatter: viewformatter},
+		                   { id: "deleteWork", name: "Delete", field: "deleteWork", width: 100, formatter: deleteformatter}
 		                 ];
 
 		    
@@ -1571,10 +1581,62 @@ app.controller('tendersDisqualifiedCtrl', ['$scope','$http','$location', 'tender
 				    	  var x = a[sortcol], y = b[sortcol];
 				    	  return (x == y ? 0 : (x > y ? 1 : -1));
 				    	}
+				    	
+				    	var gridWorkData = [];
+					      
+					      for(var i=0; i < dataWork.length; i++ )
+					    	  {
+					    	  gridWorkData[i] = {
+					    	  			tenderId : dataWork[i].tenderId,
+					    	  			id: dataWork[i].id,
+					    	  			nameOfCustomer : dataWork[i].nameOfCustomer,
+					    	  			scopeOfWork : dataWork[i].scopeOfWork,
+					    	  			workOrderStatus : dataWork[i].workOrderStatus, 
+					    	  			workOrderNumber : dataWork[i].workOrderNumber,
+					    	  			workOrderDate : dataWork[i].workOrderDate,
+					    	  			valueOfWork : dataWork[i].valueOfWork,
+					    	  			formalitiesCompleted : dataWork[i].formalitiesCompleted,
+					    	  			securityDepositBGAmount : dataWork[i].securityDepositBGAmount, 
+					    	  			securityDepositBGDate : dataWork[i].securityDepositBGDate,
+					    	  			validityOfSecurityDepositBG : dataWork[i].validityOfSecurityDepositBG,
+					    	  			dateOfWorkCompletionAsPerWorkOrder : dataWork[i].dateOfWorkCompletionAsPerWorkOrder,
+					    	  			dateOfInspection : dataWork[i].dateOfInspection,
+					    	  			dateOfMaterialDelivery : dataWork[i].dateOfMaterialDelivery,
+					    	  			dateOfWorkCompletion : dataWork[i].dateOfWorkCompletion,
+					    	  			projectCompletedInTime : dataWork[i].projectCompletedInTime, 
+					    	  			expensesMadeAsOnDate : dataWork[i].expensesMadeAsOnDate,
+					    	  			invoiceNumber : dataWork[i].invoiceNumber,
+					    	  			dateOfInvoice : dataWork[i].dateOfInvoice,
+					    	  			dateOfReceiptOfPayment : dataWork[i].dateOfReceiptOfPayment,
+					    	  			workCompletedInAllRespect : dataWork[i].workCompletedInAllRespect,
+					    	  			view : "<a href='#/workDetails' class='viewButton' tabindex='0'>View</a>",
+					    	  			deleteWork : "<a href='#/workscompleted' class='deleteButton' tabindex='0'>Delete</a>"
+					    	  		};
+					    	  }
+					      
+					      grid.onClick.subscribe(function(e,args) {
+					    	  	   var item = dataWork[args.row]; //args.grid.getDataItem(args.row);
+					    	  	 if (args.cell == grid.getColumnIndex('view'))
+					    		   $scope.viewWorkDetails(item);
+					    	  	 
+					    	  	 if (args.cell == grid.getColumnIndex('deleteWork'))
+					    	  		 {
+					    	  		$http({
+					    	  		  method: 'GET',
+					    	  		  url: '/work/delete/'+item.id
+					    	  		}).then(function successCallback(response) {
+					    	  			alert("Work Successfully Deleted !!");	
+					    	  			$route.reload();
+					    	  		  }, function errorCallback(response) {
+					    	  			alert("Failed to Delete !!");	
+					    	  		  });
+					    	  		 }
+					    	});
+
 				      
 				    	grid.init();
 				    	dataViewWork.beginUpdate();
-				    	dataViewWork.setItems(dataWork);
+				    	dataViewWork.setItems(gridWorkData);
 				    	dataViewWork.setFilter(filter);
 				    	dataViewWork.endUpdate();
 
