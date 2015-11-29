@@ -74,7 +74,7 @@ for(Cookie cookie : cookies){
 							placeholder="EMD">
 						<label> </label> 
 						
-						<label for="interested">Interested?</label> 
+						<label for="interested">Interested?<font color="red">*</font></label> 
 						<input type="checkbox" name="interested" class="form-control"
 							id="interested" ng-model=selectedTender.interested 
 							placeholder="Interested"> <label> </label>
@@ -96,9 +96,9 @@ for(Cookie cookie : cookies){
 							placeholder="Tender Submitted">
 						<label> </label> 
 						
-						<label for="submittedDate">Tender Submitted Date<font color="red">*</font></label> 
+						<label for="submittedDate">Tender Submitted Date</label> 
 						<input type="date" name="submittedDate"
-							class="form-control" id="submittedDate" required="required" value={{selectedTender.submittedDate}} ng-model=selectedTender.submittedDate
+							class="form-control" id="submittedDate" value={{selectedTender.submittedDate}} ng-model=selectedTender.submittedDate
 							placeholder="Tender Submitted Date"> <label> </label> 
 							
 						<label for="technicalBidOpened">Technical Bid Opened</label> 
@@ -106,9 +106,9 @@ for(Cookie cookie : cookies){
 						ng-model=selectedTender.technicalBidOpened
 							placeholder="Technical Bid Opened"> <label> </label> 
 							
-						<label for="technicalBidOpeningDate">Technical Bid Opening Date<font color="red">*</font></label>
+						<label for="technicalBidOpeningDate">Technical Bid Opening Date</label>
 						<input type="date" name="technicalBidOpeningDate" class="form-control"
-							id="technicalBidOpeningDate" required="required" value={{selectedTender.technicalBidOpeningDate}} ng-model=selectedTender.technicalBidOpeningDate
+							id="technicalBidOpeningDate"value={{selectedTender.technicalBidOpeningDate}} ng-model=selectedTender.technicalBidOpeningDate
 							placeholder="Technical Bid Opening Date"> <label> </label> 
 							
 						<label for="technicallyQualified">Technically Qualified</label> 
@@ -123,8 +123,8 @@ for(Cookie cookie : cookies){
 							placeholder="price Bid Opened">
 						<label> </label> 
 						
-						<label for="priceBidOpeningDate">Price Bid Opened Date<font color="red">*</font></label> 
-						<input type="date" name="priceBidOpeningDate" class="form-control" id="priceBidOpeningDate" required="required" 
+						<label for="priceBidOpeningDate">Price Bid Opened Date</label> 
+						<input type="date" name="priceBidOpeningDate" class="form-control" id="priceBidOpeningDate"
 							value={{selectedTender.priceBidOpeningDate}} ng-model=selectedTender.priceBidOpeningDate
 							placeholder="Price Bid Opened Date"> <label> </label> 
 							
