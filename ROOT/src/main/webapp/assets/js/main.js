@@ -210,14 +210,14 @@ var app = angular.module('swatielectrotech', [
 		    
 		    var columns = [
 		                   { id: "id", name: "Tender ID", field: "id", width: 100, sortable: true },
-		                   { id: "nameOfCustomer", name: "Name Of Customer", field: "nameOfCustomer", width: 240, sortable: true },
-		                   { id: "scopeOfWork", name: "Scope of Work", field: "scopeOfWork", width: 240, sortable: true },
-		                   { id: "estimatedValue", name: "Estimated Value", field: "estimatedValue", width: 240, sortable: true },
+		                   { id: "nameOfCustomer", name: "Name Of Customer", field: "nameOfCustomer", width: 220, sortable: true },
+		                   { id: "scopeOfWork", name: "Scope of Work", field: "scopeOfWork", width: 220, sortable: true },
+		                   { id: "estimatedValue", name: "Estimated Value", field: "estimatedValue", width: 150, sortable: true },
 		                   { id: "dueDate", name: "Due Date", field: "dueDate", width: 120, sortable: true },
 		                   { id: "emd", name: "EMD", field: "emd", width: 100, sortable: true },
-		                   { id: "interested", name: "Interested", field: "interested", width: 120, /*formatter: Slick.Formatters.Checkmark,*/ sortable: true },
-		                   { id: "view", name: "Details", field: "view", width: 120, formatter: viewformatter},
-		                   { id: "deleteTender", name: "Delete", field: "deleteTender", width: 120, formatter: deleteformatter}
+		                   { id: "interested", name: "Interested", field: "interested", width: 100, formatter: Slick.Formatters.YesNo, sortable: true },
+		                   { id: "view", name: "Details", field: "view", width: 90, formatter: viewformatter},
+		                   { id: "deleteTender", name: "Delete", field: "deleteTender", width: 90, formatter: deleteformatter}
 		                 ];
 		    var columnFilters = {};
 
