@@ -419,6 +419,7 @@ var app = angular.module('swatielectrotech', [
 				   $scope.submitNewForm = function(selectedTender) {
 				        // Posting data
 					   
+					   
 					   var data = $.param({
 						   "nameOfCustomer": selectedTender.nameOfCustomer,
 						   "scopeOfWork": selectedTender.scopeOfWork,
@@ -428,14 +429,15 @@ var app = angular.module('swatielectrotech', [
 						   "interested": selectedTender.interested,
 						   "statusOfTender": selectedTender.statusOfTender,
 						   "systemEnteredDate": formatDate(selectedTender.systemEnteredDate),
-						   "tenderSubmitted": selectedTender.tenderSubmitted,
-						   "submittedDate": formatDate(selectedTender.submittedDate),
-						   "technicalBidOpened": selectedTender.technicalBidOpened,
-						   "technicalBidOpeningDate": formatDate(selectedTender.technicalBidOpeningDate),
-						   "technicallyQualified": selectedTender.technicallyQualified,
-						   "priceBidOpened": selectedTender.priceBidOpened,
-						   "priceBidOpeningDate": formatDate(selectedTender.priceBidOpeningDate),
-						   "lowestBidder": selectedTender.lowestBidder
+						   "tenderSubmitted": (typeof($scope.selectedTender.tenderSubmitted)==='undefined') ? false : selectedTender.tenderSubmitted,
+						    "submittedDate":(typeof($scope.selectedTender.submittedDate)==='undefined') ? new Date(0) : formatDate(selectedTender.submittedDate),
+						    "technicalBidOpened":(typeof($scope.selectedTender.technicalBidOpened)==='undefined') ? false : selectedTender.technicalBidOpened,
+						    "technicalBidOpeningDate": (typeof($scope.selectedTender.technicalBidOpeningDate)==='undefined') ? new Date(0) : formatDate(selectedTender.technicalBidOpeningDate),
+						    "technicallyQualified" : (typeof($scope.selectedTender.technicallyQualified)==='undefined') ? false : selectedTender.technicallyQualified,
+						    "priceBidOpened" : (typeof($scope.selectedTender.priceBidOpened)==='undefined') ? false : selectedTender.priceBidOpened,
+						    "priceBidOpeningDate" :  (typeof($scope.selectedTender.priceBidOpeningDate)==='undefined') ? new Date(0) : formatDate(selectedTender.priceBidOpeningDate),
+						    "lowestBidder" : (typeof($scope.selectedTender.lowestBidder)==='undefined') ? false : selectedTender.lowestBidder,							
+						   
 						   });
 		        
 					     if(selectedTender.lowestBidder)
