@@ -731,6 +731,57 @@ var app = angular.module('swatielectrotech', [
 						   workCompletedInAllRespect: $scope.selectedWorkwithoutFormatting.workCompletedInAllRespect 				   
 						   
 				   }
+				   
+			        $http({
+		    	  		  method: 'GET',
+		    	  		  url: '/tender/'+$scope.selectedWorkwithoutFormatting.tenderId,
+				          headers : {'Content-Type': 'application/x-www-form-urlencoded'} 
+		    	  		}).then(function successCallback(response) {
+		    	  			$scope.selectedTenderwithoutFormatting = response;
+		    	  			if($scope.selectedTenderwithoutFormatting !== null)
+		    				   {
+		    						   $scope.selectedTender = {
+		    								   id :  $scope.selectedTenderwithoutFormatting.id,
+		    								   nameOfCustomer : $scope.selectedTenderwithoutFormatting.nameOfCustomer,
+		    								   scopeOfWork : $scope.selectedTenderwithoutFormatting.scopeOfWork,
+		    								   estimatedValue : $scope.selectedTenderwithoutFormatting.estimatedValue,
+		    								   dueDate : new Date(formatDate($scope.selectedTenderwithoutFormatting.dueDate)),
+		    								   emd : $scope.selectedTenderwithoutFormatting.emd,
+		    								   interested : $scope.selectedTenderwithoutFormatting.interested,
+		    								   statusOfTender : $scope.selectedTenderwithoutFormatting.statusOfTender,
+		    								   systemEnteredDate: new Date(formatDate($scope.selectedTenderwithoutFormatting.systemEnteredDate)),
+		    								   tenderSubmitted: $scope.selectedTenderwithoutFormatting.tenderSubmitted ,
+		    								   submittedDate: new Date(formatDate($scope.selectedTenderwithoutFormatting.submittedDate)),
+		    								   technicalBidOpened: $scope.selectedTenderwithoutFormatting.technicalBidOpened,
+		    								   technicalBidOpeningDate: new Date(formatDate($scope.selectedTenderwithoutFormatting.technicalBidOpeningDate)),
+		    								   technicallyQualified: $scope.selectedTenderwithoutFormatting.technicallyQualified,
+		    								   priceBidOpened: $scope.selectedTenderwithoutFormatting.priceBidOpened,
+		    								   priceBidOpeningDate: new Date(formatDate($scope.selectedTenderwithoutFormatting.priceBidOpeningDate)),
+		    								   lowestBidder: $scope.selectedTenderwithoutFormatting.lowestBidder,
+		    								   addressOfCustomer: $scope.selectedTenderwithoutFormatting.addressOfCustomer, 
+		    								   tenderNumber: $scope.selectedTenderwithoutFormatting.tenderNumber, 
+		    								   nameOfContactPerson: $scope.selectedTenderwithoutFormatting.nameOfContactPerson, 
+		    								   numberOfContactPerson: $scope.selectedTenderwithoutFormatting.numberOfContactPerson, 
+		    								   preQualificationCriteria: $scope.selectedTenderwithoutFormatting.preQualificationCriteria, 
+		    								   preBidOpeningDate: new Date(formatDate($scope.selectedTenderwithoutFormatting.preBidOpeningDate)),
+		    								   tenderFee: $scope.selectedTenderwithoutFormatting.tenderFee, 
+		    								   tenderPurchaseDueDate: new Date(formatDate($scope.selectedTenderwithoutFormatting.tenderPurchaseDueDate)),
+		    								   bgIsAcceptableOrNot: $scope.selectedTenderwithoutFormatting.bgIsAcceptableOrNot, 
+		    								   tenderSubmission: $scope.selectedTenderwithoutFormatting.tenderSubmission, 
+		    								   paymentTerms: $scope.selectedTenderwithoutFormatting.paymentTerms, 
+		    								   offerValidity: new Date(formatDate($scope.selectedTenderwithoutFormatting.offerValidity)), 
+		    								   guaranteePeriod: $scope.selectedTenderwithoutFormatting.guaranteePeriod, 
+		    								   deliveryPeriod: $scope.selectedTenderwithoutFormatting.deliveryPeriod, 
+		    								   performanceGuarantee: $scope.selectedTenderwithoutFormatting.performanceGuarantee,
+		    								   specialTermsAndCond: $scope.selectedTenderwithoutFormatting.specialTermsAndCond, 
+		    								   specialDocsToAttach: $scope.selectedTenderwithoutFormatting.specialDocsToAttach, 
+		    								   sheetPreparedBy: $scope.selectedTenderwithoutFormatting.sheetPreparedBy
+		    						   }
+		    				   }
+		    	  			
+		    	  		  }, function errorCallback(response) {
+		    	  				
+		    	  		  });
 		   }
 	   
 	   function formatDate(date) {
