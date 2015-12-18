@@ -636,4 +636,24 @@ table tr:nth-child(odd) {
 table tr:nth-child(even) {
   background-color: #ffffff;
 }
+
+  #tableContainer-1 {
+    height: 100%;
+    width: 50%;
+    display: table;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  #tableContainer-2 {
+    vertical-align: middle;
+    display: table-cell;
+    height: 100%;
+  }
+  #myTable {
+    margin: 0 auto;
+  }
+  
+  td{
+  vertical-align: bottom;
+  }
 /* Style to add fields dynamically Ends */
