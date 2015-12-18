@@ -344,7 +344,25 @@ var app = angular.module('swatielectrotech', [
 							   technicallyQualified: $scope.selectedTenderwithoutFormatting.technicallyQualified,
 							   priceBidOpened: $scope.selectedTenderwithoutFormatting.priceBidOpened,
 							   priceBidOpeningDate: new Date(formatDate($scope.selectedTenderwithoutFormatting.priceBidOpeningDate)),
-							   lowestBidder: $scope.selectedTenderwithoutFormatting.lowestBidder 				   
+							   lowestBidder: $scope.selectedTenderwithoutFormatting.lowestBidder,
+							   addressOfCustomer: $scope.selectedTenderwithoutFormatting.addressOfCustomer, 
+							   tenderNumber: $scope.selectedTenderwithoutFormatting.tenderNumber, 
+							   nameOfContactPerson: $scope.selectedTenderwithoutFormatting.nameOfContactPerson, 
+							   numberOfContactPerson: $scope.selectedTenderwithoutFormatting.numberOfContactPerson, 
+							   preQualificationCriteria: $scope.selectedTenderwithoutFormatting.preQualificationCriteria, 
+							   preBidOpeningDate: new Date(formatDate($scope.selectedTenderwithoutFormatting.preBidOpeningDate)),
+							   tenderFee: $scope.selectedTenderwithoutFormatting.tenderFee, 
+							   tenderPurchaseDueDate: new Date(formatDate($scope.selectedTenderwithoutFormatting.tenderPurchaseDueDate)),
+							   bgIsAcceptableOrNot: $scope.selectedTenderwithoutFormatting.bgIsAcceptableOrNot, 
+							   tenderSubmission: $scope.selectedTenderwithoutFormatting.tenderSubmission, 
+							   paymentTerms: $scope.selectedTenderwithoutFormatting.paymentTerms, 
+							   offerValidity: new Date(formatDate($scope.selectedTenderwithoutFormatting.offerValidity)), 
+							   guaranteePeriod: $scope.selectedTenderwithoutFormatting.guaranteePeriod, 
+							   deliveryPeriod: $scope.selectedTenderwithoutFormatting.deliveryPeriod, 
+							   performanceGuarantee: $scope.selectedTenderwithoutFormatting.performanceGuarantee,
+							   specialTermsAndCond: $scope.selectedTenderwithoutFormatting.specialTermsAndCond, 
+							   specialDocsToAttach: $scope.selectedTenderwithoutFormatting.specialDocsToAttach, 
+							   sheetPreparedBy: $scope.selectedTenderwithoutFormatting.sheetPreparedBy
 					   }
 			   }
 		   
@@ -380,7 +398,25 @@ var app = angular.module('swatielectrotech', [
 				   "technicallyQualified": selectedTender.technicallyQualified,
 				   "priceBidOpened": selectedTender.priceBidOpened,
 				   "priceBidOpeningDate": formatDate(selectedTender.priceBidOpeningDate),
-				   "lowestBidder": selectedTender.lowestBidder
+				   "lowestBidder": selectedTender.lowestBidder,
+				   "addressOfCustomer": selectedTender.addressOfCustomer,
+				   "tenderNumber": selectedTender.tenderNumber,
+				   "nameOfContactPerson": selectedTender.nameOfContactPerson,
+				   "numberOfContactPerson": selectedTender.numberOfContactPerson,
+				   "preQualificationCriteria": selectedTender.preQualificationCriteria,
+				   "preBidOpeningDate": formatDate(selectedTender.preBidOpeningDate),
+				   "tenderFee": selectedTender.tenderFee,
+				   "tenderPurchaseDueDate": formatDate(selectedTender.tenderPurchaseDueDate),
+				   "bgIsAcceptableOrNot": selectedTender.bgIsAcceptableOrNot,
+				   "tenderSubmission": selectedTender.tenderSubmission,
+				   "paymentTerms": selectedTender.paymentTerms,
+				   "offerValidity": formatDate(selectedTender.offerValidity),
+				   "guaranteePeriod": selectedTender.guaranteePeriod,
+				   "deliveryPeriod": selectedTender.deliveryPeriod,
+				   "performanceGuarantee": selectedTender.performanceGuarantee,
+				   "specialTermsAndCond": selectedTender.specialTermsAndCond,
+				   "specialDocsToAttach": selectedTender.specialDocsToAttach,
+				   "sheetPreparedBy": selectedTender.sheetPreparedBy
 				   });
 			     if(selectedTender.lowestBidder)
 				   {
@@ -436,7 +472,25 @@ var app = angular.module('swatielectrotech', [
 						    "technicallyQualified" : (typeof($scope.selectedTender.technicallyQualified)==='undefined') ? false : selectedTender.technicallyQualified,
 						    "priceBidOpened" : (typeof($scope.selectedTender.priceBidOpened)==='undefined') ? false : selectedTender.priceBidOpened,
 						    "priceBidOpeningDate" :  (typeof($scope.selectedTender.priceBidOpeningDate)==='undefined') ? new Date(0) : formatDate(selectedTender.priceBidOpeningDate),
-						    "lowestBidder" : (typeof($scope.selectedTender.lowestBidder)==='undefined') ? false : selectedTender.lowestBidder,							
+						    "lowestBidder" : (typeof($scope.selectedTender.lowestBidder)==='undefined') ? false : selectedTender.lowestBidder,
+						    "addressOfCustomer" : (typeof($scope.selectedTender.lowestBidder)==='undefined') ? null : selectedTender.addressOfCustomer,
+						    "tenderNumber" : (typeof($scope.selectedTender.lowestBidder)==='undefined') ? null : selectedTender.tenderNumber,
+						    "nameOfContactPerson" : (typeof($scope.selectedTender.lowestBidder)==='undefined') ? null : selectedTender.nameOfContactPerson,
+						    "numberOfContactPerson" : (typeof($scope.selectedTender.lowestBidder)==='undefined') ? null : selectedTender.numberOfContactPerson,
+						    "preQualificationCriteria" : (typeof($scope.selectedTender.lowestBidder)==='undefined') ? null : selectedTender.preQualificationCriteria,
+						    "preBidOpeningDate":(typeof($scope.selectedTender.submittedDate)==='undefined') ? new Date(0) : formatDate(selectedTender.preBidOpeningDate),
+						    "tenderFee" : (typeof($scope.selectedTender.lowestBidder)==='undefined') ? null : selectedTender.tenderFee,
+						    "tenderPurchaseDueDate":(typeof($scope.selectedTender.submittedDate)==='undefined') ? new Date(0) : formatDate(selectedTender.tenderPurchaseDueDate),
+						    "bgIsAcceptableOrNot" : (typeof($scope.selectedTender.lowestBidder)==='undefined') ? false : selectedTender.bgIsAcceptableOrNot,
+						    "tenderSubmission" : (typeof($scope.selectedTender.lowestBidder)==='undefined') ? null : selectedTender.tenderSubmission,
+						    "paymentTerms" : (typeof($scope.selectedTender.lowestBidder)==='undefined') ? null : selectedTender.paymentTerms,
+						    "offerValidity":(typeof($scope.selectedTender.submittedDate)==='undefined') ? new Date(0) : formatDate(selectedTender.offerValidity),
+						    "guaranteePeriod" : (typeof($scope.selectedTender.lowestBidder)==='undefined') ? null : selectedTender.guaranteePeriod,
+						    "deliveryPeriod" : (typeof($scope.selectedTender.lowestBidder)==='undefined') ? null : selectedTender.deliveryPeriod,
+						    "performanceGuarantee" : (typeof($scope.selectedTender.lowestBidder)==='undefined') ? null : selectedTender.performanceGuarantee,
+						    "specialTermsAndCond" : (typeof($scope.selectedTender.lowestBidder)==='undefined') ? null : selectedTender.specialTermsAndCond,
+						    "specialDocsToAttach" : (typeof($scope.selectedTender.lowestBidder)==='undefined') ? null : selectedTender.specialDocsToAttach,
+						    "sheetPreparedBy" : (typeof($scope.selectedTender.lowestBidder)==='undefined') ? null : selectedTender.sheetPreparedBy
 						   
 						   });
 		        
