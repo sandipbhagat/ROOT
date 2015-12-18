@@ -69,7 +69,7 @@
 								</tr>
 								<tr height="30">
 									<td>Address of Customer</td>
-									<td>{{selectedTender.addressOfCutomer}}</td>
+									<td>{{selectedTender.addressOfCustomer}}</td>
 								</tr>
 								<tr height="30">
 									<td>Name of contact Person</td>
