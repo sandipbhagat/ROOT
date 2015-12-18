@@ -32,8 +32,8 @@ public class PartiesController {
 		try {
 			listOfParties = tenderServices.getParties(id);
 
-		} catch (Exception e) {
-			e.printStackTrace();
+		} catch (Exception e) { 
+			e.printStackTrace(); 
 		} 
 		return listOfParties;
 	}
