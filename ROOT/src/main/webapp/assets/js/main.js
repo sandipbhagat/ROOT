@@ -680,7 +680,7 @@ var app = angular.module('swatielectrotech', [
 							    	  			//alert("Failed to Create !!");	
 							    	  		  });	
 									}
-								    // To Update Parties invilved  
+								    // To Update Documents uploaded  
 								      $route.reload();
 						        };
 					          
@@ -700,8 +700,96 @@ var app = angular.module('swatielectrotech', [
 					        
 					        $scope.removeDocument = function(index) {
 					        	$scope.documents.splice(index,1);
+					        }; 
+					        
+					        
+						      //--- To Add Contact person-------					        
+					        
+					        $scope.persons = [{tempid: 'choice1'}];
+
+							        $( function (){
+							    	  $http({
+						    	  		  method: 'GET',
+						    	  		  url: '/contactpersons/getPerson/'+$scope.selectedTender.id,
+								          headers : {'Content-Type': 'application/x-www-form-urlencoded'} 
+						    	  		}).then(function successCallback(response) {
+						    	  			//alert("Tender Successfully Created !!");
+						    	  			//$scope.parties.splice(index,1);
+						    	  			//$location.path('/newtenders');
+						    	  			$scope.persons = response.data;
+						    	  		  }, function errorCallback(response) {
+						    	  			//alert("Failed to Create !!");	
+						    	  		  });
+							        })			        	
+					        	
+					    	  
+					        $scope.addNewPersonChoice = function() {
+					          var newItemNo = $scope.persons.length+1;
+					          $scope.persons.push({'tempid':'choice'+newItemNo});
 					        };
 					        
+					        $scope.saveAllPersons = function(persons) {
+								      for (var i=0 ; i < persons.length ; i++) {
+								    	  
+							    		  if(typeof(persons[i].id) === "undefined" )
+						    			  {
+									    	  var data = $.param({
+								    		  		"tenderId": $scope.selectedTender.id,
+								    		  		"nameOfPerson" : persons[i].nameOfPerson,
+								    		  		"addressOfPerson" : persons[i].addressOfPerson,
+								    		  		"phoneNumber" : persons[i].phoneNumber,
+								    		  		"email" : persons[i].email
+											   });
+						    			  }
+							    		  else
+								    		{
+									    	  var data = $.param({
+									    		  		"tenderId": persons[i].tenderId,
+									    		  		"id" : persons[i].id,
+									    		  		"nameOfPerson" : persons[i].nameOfPerson,
+									    		  		"addressOfPerson" : persons[i].addressOfPerson,
+									    		  		"phoneNumber" : persons[i].phoneNumber,
+									    		  		"email" : persons[i].email
+												   });
+								    		}
+								    	  
+								    	  $http({
+							    	  		  method: 'POST',
+							    	  		  url: '/contactpersons/addorupdate',
+									          data    : data, //forms user object
+									          headers : {'Content-Type': 'application/x-www-form-urlencoded'} 
+							    	  		}).then(function successCallback(response) {
+							    	  			//alert("Tender Successfully Created !!");
+							    	  			//$scope.parties.splice(index,1);
+							    	  			//$location.path('/newtenders');
+							    	  		  }, function errorCallback(response) {
+							    	  			//alert("Failed to Create !!");	
+							    	  		  });	
+									}
+								    // To Update  Contact Persons  
+								      $route.reload();
+						        };
+					          
+					        $scope.removePersonChoice = function(index,id) {
+						        $http({
+					    	  		  method: 'GET',
+					    	  		  url: '/contactpersons/delete/'+id,
+							          headers : {'Content-Type': 'application/x-www-form-urlencoded'} 
+					    	  		}).then(function successCallback(response) {
+					    	  			//alert("Tender Successfully Created !!");
+					    	  			$scope.persons.splice(index,1);
+					    	  			//$location.path('/newtenders');
+					    	  		  }, function errorCallback(response) {
+					    	  			//alert("Failed to Create !!");	
+					    	  		  });				          
+					        };
+					        
+					        $scope.removePerson = function(index) {
+					        	$scope.persons.splice(index,1);
+					        };
+					        
+					        //---- Add Contact persons ends here
+					        					        
 			        	}
 		}
 	]);  	

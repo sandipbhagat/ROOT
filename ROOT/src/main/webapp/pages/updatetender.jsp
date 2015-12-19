@@ -286,6 +286,21 @@ for(Cookie cookie : cookies){
 				   </fieldset>
 				   <button class="addfields" ng-click="addNewDocumentChoice()">Add Document</button>
 				   <button class="addfields" ng-click="saveAllDocuments(documents)">Save All</button>
+				   
+				  <h3>
+						<font color="#ff3333"> Contact Persons</font>
+					</h3>
+					<fieldset  data-ng-repeat="person in persons">
+				      <input type="text" ng-model="person.nameOfPerson" name="" placeholder="Name of Person">
+				      <input type="text" ng-model="person.addressOfPerson" name="" placeholder="Address of Person">
+				      <input type="text" ng-model="person.phoneNumber" name="" placeholder="Phone no">
+				      <input type="text" ng-model="person.email" name="" placeholder="email">
+				      <button class="remove"  ng-if="person.id" ng-click="removePersonChoice($index,person.id)">-</button>
+				      <button class="add"  ng-if="!person.id" >+</button>
+				      <button class="remove"  ng-if="!person.id" ng-click="removePerson($index)">-</button>
+				   </fieldset>
+				   <button class="addfields" ng-click="addNewPersonChoice()">Add field</button>
+				   <button class="addfields" ng-click="saveAllPersons(persons)">Save All</button>
 				</section>
 
 			</div>
