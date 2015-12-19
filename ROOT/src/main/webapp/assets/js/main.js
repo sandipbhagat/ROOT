@@ -635,6 +635,8 @@ var app = angular.module('swatielectrotech', [
 					        
 					        $scope.fileUpload = function (filelist) {
 					            for (var i = 0; i < filelist.length; ++i) {
+					            	var formData = new FormData();
+					            	formData.append("file" ,  filelist.item(i));
 					                var file = filelist.item(i);
 					                var workingDirectory = $location.path();
 					                //do something with file; remember to call $scope.$apply() to trigger $digest (dirty checking)
@@ -649,14 +651,19 @@ var app = angular.module('swatielectrotech', [
 						    			  {
 									    	  var data = $.param({
 								    		  		"tenderId": $scope.selectedTender.id,
-								    		  		"uploadedDate": new Date()
+								    		  		"url" : documents[i].url,
+								    		  		"uploadedDate" : new Date(),
+								    		  		"downloaded" : false
 											   });
 						    			  }
 							    		  else
 								    		{
 									    	  var data = $.param({
-									    		  		"tenderId": documents[i].documentId,
+									    		  		"tenderId": documents[i].tenderId,
 									    		  		"id" : documents[i].id,
+									    		  		"url" : documents[i].url,
+									    		  		"uploadedDate" : documents[i].uploadedDate,
+									    		  		"downloaded" : documents[i].downloaded
 												   });
 								    		}
 								    	  
