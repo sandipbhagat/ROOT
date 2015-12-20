@@ -83,7 +83,7 @@ public class WorkDaoImpl implements WorkDao {
 	public List<Payment> getPaymentsById(int id) {
 		session = this.sessionFactory.getCurrentSession();
 		Criteria criteria = session.createCriteria(Payment.class);
-		criteria.add(Restrictions.eq("supplierId", id));
+		criteria.add(Restrictions.eq("workId", id));
 		List<Payment> listOfPayments = (List<Payment>) criteria.list();
 		return listOfPayments;
 	}
