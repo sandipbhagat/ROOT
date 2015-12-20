@@ -1,6 +1,7 @@
 package com.groei.swati.services;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -95,6 +96,11 @@ public class TenderServicesImpl implements TenderServices {
 	@Override
 	public boolean deleteDocument(int id) {
 		return tenderDao.deleteDocument(id);
+	}
+
+	@Override
+	public Map<String, Integer> getAnaylsis() {
+		return tenderDao.getAnaylsis();
 	}
 
 }

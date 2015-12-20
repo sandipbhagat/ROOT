@@ -1,6 +1,7 @@
 package com.groei.swati.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import com.groei.swati.model.Document;
 import com.groei.swati.model.Party;
@@ -26,5 +27,6 @@ public interface TenderDao {
 	public boolean deletePerson(int id);
 	public boolean addOrUpdateDocument(Document document);
 	public boolean deleteDocument(int id);
+	public Map<String, Integer> getAnaylsis();
 	
 }

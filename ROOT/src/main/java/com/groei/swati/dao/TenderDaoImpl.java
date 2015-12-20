@@ -1,6 +1,8 @@
 package com.groei.swati.dao;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.log4j.Logger;
 import org.hibernate.Criteria;
@@ -14,12 +16,16 @@ import com.groei.swati.model.Document;
 import com.groei.swati.model.Party;
 import com.groei.swati.model.Person;
 import com.groei.swati.model.Tender;
+import com.groei.swati.model.Work;
  
 @Transactional
 public class TenderDaoImpl implements TenderDao {
 
 	@Autowired
 	SessionFactory sessionFactory;
+	
+	@Autowired
+	WorkDao workDao;
 
 	static final Logger logger = Logger.getLogger(TenderDaoImpl.class);
 
@@ -94,6 +100,7 @@ public class TenderDaoImpl implements TenderDao {
 		return listOfTenders;
 	}
 	
+	
 	@Override
 	public List<Tender> getTenderDisqualifiedList() {
 		session = this.sessionFactory.getCurrentSession();
@@ -158,5 +165,32 @@ public class TenderDaoImpl implements TenderDao {
 		Document document = (Document) session.get(Document.class, id);
 		session.delete(document);
 		return false;
+	}
+
+	@Override
+	public Map<String, Integer> getAnaylsis() {
+		// 
+		Map<String,Integer> map = new HashMap<String,Integer>();
+//		List<Tender> list =  (List<Tender>) this.sessionFactory.getCurrentSession().createCriteria(Tender.class).list();
+		
+		List<Tender> listOfInProcessList = getTenderInProcessList();
+		map.put("InProcessTenderCount",listOfInProcessList.size());
+		
+		List<Tender> listOfDisQualified = getTenderDisqualifiedList();
+		map.put("DisQualifiedTenderCount",listOfDisQualified.size());
+		
+		List<Tender> listOfNewTender = getNewTenderList();
+		map.put("NewTenderCount",listOfNewTender.size());
+		
+		map.put("AllTendersCount", listOfDisQualified.size()+listOfInProcessList.size()+listOfNewTender.size());
+	
+		List<Work> listofWorkCompleted = workDao.getWorkCompleted();
+		map.put("workCompletedCount", listofWorkCompleted.size());
+		
+		List<Work> listOfInProcessWork = workDao.getWorkInProcessList();
+		map.put("InProcessWork",listOfInProcessWork.size());
+		
+		map.put("AllWorkCount",listOfInProcessWork.size()+listofWorkCompleted.size());
+		return map;
 	}
 }

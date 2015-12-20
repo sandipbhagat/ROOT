@@ -1,6 +1,7 @@
 package com.groei.swati.services;
 
 import java.util.List;
+import java.util.Map;
 
 import com.groei.swati.model.Document;
 import com.groei.swati.model.Party;
@@ -29,5 +30,6 @@ public interface TenderServices {
 	public List<Document> getDocumentsById(int id) throws Exception;
 	public boolean addOrUpdateDocument(Document document) throws Exception;
 	public boolean deleteDocument(int id) throws Exception;
+	public Map<String, Integer> getAnaylsis();
 	
 }
