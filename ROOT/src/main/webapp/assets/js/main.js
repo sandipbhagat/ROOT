@@ -115,6 +115,7 @@ var app = angular.module('swatielectrotech', [
                                      .when("/worksinprocess", {templateUrl: "pages/worksinprocess.jsp", controller: "worksCtrl"})
                                      .when("/workscompleted", {templateUrl: "pages/workscompleted.jsp", controller: "worksCompletedCtrl"})
                                      .when("/addnewwork", {templateUrl: "pages/addNewWork.jsp", controller: "workDetailsCtrl"})
+                                     .when("/analysis", {templateUrl: "pages/analysis.jsp", controller: "analysisCtrl"})
                                      // else 404 
                                      .otherwise("/404", {templateUrl: "partials/404.html", controller: "PageCtrl"});
                                  }]);
@@ -2044,7 +2045,338 @@ app.controller('tendersDisqualifiedCtrl', ['$scope','$http', '$route','$location
 		    
 	    }])	    	    
 	    
-	    
+app.controller('analysisCtrl', ['$scope','$http','$location', 'tenderService','$route', function( $scope, $http, $location, tenderService, $route) {
+	
+    $( function (){
+  	  $http({
+	  		  method: 'GET',
+	  		  url: '/anaylsis/getAnaylsis',
+	          headers : {'Content-Type': 'application/x-www-form-urlencoded'} 
+	  		}).then(function successCallback(response) {
+	  			$scope.details = response.data;
+	  			
+	  			//----------------First Chart Begions---------
+	  			$(function () {
+	  			    // Create the chart
+	  			    $('#container').highcharts({
+	  			        chart: {
+	  			            type: 'column'
+	  			        },
+		  			      credits: {
+		  			        enabled: false
+		  			    },
+	  			        title: {
+	  			            text: 'All Tenders Vs Tenders Submitted'
+	  			        },
+	  			        xAxis: {
+	  			            type: 'category'
+	  			        },
+	  			        yAxis: {
+	  			            title: {
+	  			                text: 'Total Count'
+	  			            }
+
+	  			        },
+	  			        legend: {
+	  			            enabled: false
+	  			        },
+	  			        plotOptions: {
+	  			            series: {
+	  			                borderWidth: 0,
+	  			                dataLabels: {
+	  			                    enabled: true,
+	  			                    format: '{point.y}'
+	  			                }
+	  			            }
+	  			        },
+
+	  			        tooltip: {
+	  			            headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
+	  			            pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y}</b> Count<br/>'
+	  			        },
+
+	  			        series: [{
+	  			            name: "Tenders",
+	  			            colorByPoint: true,
+	  			            data: [{
+	  			                name: "All Tenders",
+	  			                y: $scope.details.AllTendersCount + $scope.details.AllWorkCount,
+	  			                color: '#cc5100'
+	  			            }, {
+	  			                name: "Tenders Submitted",
+	  			                y: $scope.details.AllTendersCount + $scope.details.AllWorkCount - $scope.details.NewTenderCount,
+	  			                color: '#48d148'
+	  			            }]
+	  			        }]
+	  			    });
+	  			});
+	  			
+	  			//------ First Chart Ends-----
+	  			
+	  			//------Second chart begions-----
+	  			
+	  			$(function () {
+	  			    // Create the chart
+	  			    $('#container1').highcharts({
+	  			        chart: {
+	  			            type: 'column'
+	  			        },
+		  			      credits: {
+		  			        enabled: false
+		  			    },
+	  			        title: {
+	  			            text: 'Tenders Submitted Vs Technically Qualified'
+	  			        },
+	  			        xAxis: {
+	  			            type: 'category'
+	  			        },
+	  			        yAxis: {
+	  			            title: {
+	  			                text: 'Total Count'
+	  			            }
+
+	  			        },
+	  			        legend: {
+	  			            enabled: false
+	  			        },
+	  			        plotOptions: {
+	  			            series: {
+	  			                borderWidth: 0,
+	  			                dataLabels: {
+	  			                    enabled: true,
+	  			                    format: '{point.y}'
+	  			                }
+	  			            }
+	  			        },
+
+	  			        tooltip: {
+	  			            headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
+	  			            pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y}</b> Count<br/>'
+	  			        },
+
+	  			        series: [{
+	  			            name: "Tenders",
+	  			            colorByPoint: true,
+	  			            data: [{
+	  			                name: "Tenders Submitted",
+	  			                y: $scope.details.InProcessTenderCount + $scope.details.DisQualifiedTenderCount + $scope.details.AllWorkCount,
+	  			                color: '#cc5100'	  			                
+	  			            }, {
+	  			                name: "Technically Qualified",
+	  			                y: $scope.details.InProcessTenderCount + $scope.details.AllWorkCount,
+	  			                color: '#48d148'
+	  			            }]
+	  			        }]
+	  			    });
+	  			});
+	  			
+	  			//----Second chart ends--------
+	  			
+	  			//------Third chart begions-----
+	  			
+	  			$(function () {
+	  			    // Create the chart
+	  			    $('#container2').highcharts({
+	  			        chart: {
+	  			            type: 'column'
+	  			        },
+		  			      credits: {
+		  			        enabled: false
+		  			    },
+	  			        title: {
+	  			            text: 'Tenders Submitted Vs Tenders Found with lowest Rates'
+	  			        },
+	  			        xAxis: {
+	  			            type: 'category'
+	  			        },
+	  			        yAxis: {
+	  			            title: {
+	  			                text: 'Total Count'
+	  			            }
+
+	  			        },
+	  			        legend: {
+	  			            enabled: false
+	  			        },
+	  			        plotOptions: {
+	  			            series: {
+	  			                borderWidth: 0,
+	  			                dataLabels: {
+	  			                    enabled: true,
+	  			                    format: '{point.y}'
+	  			                }
+	  			            }
+	  			        },
+
+	  			        tooltip: {
+	  			            headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
+	  			            pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y}</b> Count<br/>'
+	  			        },
+
+	  			        series: [{
+	  			            name: "Tenders",
+	  			            colorByPoint: true,
+	  			            data: [{
+	  			                name: "Tenders Submitted",
+	  			                y: $scope.details.InProcessTenderCount + $scope.details.DisQualifiedTenderCount + $scope.details.AllWorkCount,
+	  			                color: '#cc5100'	  			                
+	  			            }, {
+	  			                name: "Tenders Found with lowest Rates",
+	  			                y: $scope.details.AllWorkCount,
+	  			                color: '#48d148'
+	  			            }]
+	  			        }]
+	  			    });
+	  			});
+	  			
+	  			//----Third chart ends--------
+	  			
+	  			//------Fourth chart begions-----
+	  			
+	  			$(function () {
+	  			    // Create the chart
+	  			    $('#container3').highcharts({
+	  			        chart: {
+	  			            type: 'column'
+	  			        },
+		  			      credits: {
+		  			        enabled: false
+		  			    },
+	  			        title: {
+	  			            text: 'All Works Vs Works Completed Vs In Process Works'
+	  			        },
+	  			        xAxis: {
+	  			            type: 'category'
+	  			        },
+	  			        yAxis: {
+	  			            title: {
+	  			                text: 'Total Count'
+	  			            }
+
+	  			        },
+	  			        legend: {
+	  			            enabled: false
+	  			        },
+	  			        plotOptions: {
+	  			            series: {
+	  			                borderWidth: 0,
+	  			                dataLabels: {
+	  			                    enabled: true,
+	  			                    format: '{point.y}'
+	  			                }
+	  			            }
+	  			        },
+
+	  			        tooltip: {
+	  			            headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
+	  			            pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y}</b> Count<br/>'
+	  			        },
+
+	  			        series: [{
+	  			            name: "Works",
+	  			            colorByPoint: true,
+	  			            data: [{
+	  			                name: "All Works",
+	  			                y: $scope.details.AllWorkCount,
+	  			                color: '#cc5100'	  			                
+	  			            }, {
+	  			                name: "Works Commpleted",
+	  			                y: $scope.details.workCompletedCount,
+	  			                color: '#48d148'
+	  			            },
+	  			           {
+	  			                name: "In Process Works",
+	  			                y: $scope.details.InProcessWork,
+	  			                color: '#ff9900'
+	  			            }]
+	  			        }]
+	  			    });
+	  			});
+	  			
+	  			//----Fourth chart ends--------
+	  			
+	  			//------Fifth chart begions-----
+	  			
+	  			$(function () {
+	  			    // Create the chart
+	  			    $('#container4').highcharts({
+	  			        chart: {
+	  			            type: 'column'
+	  			        },
+		  			      credits: {
+		  			        enabled: false
+		  			    },
+	  			        title: {
+	  			            text: 'Tenders Analysis Till Now'
+	  			        },
+	  			        xAxis: {
+	  			            type: 'category'
+	  			        },
+	  			        yAxis: {
+	  			            title: {
+	  			                text: 'Total Count'
+	  			            }
+
+	  			        },
+	  			        legend: {
+	  			            enabled: false
+	  			        },
+	  			        plotOptions: {
+	  			            series: {
+	  			                borderWidth: 0,
+	  			                dataLabels: {
+	  			                    enabled: true,
+	  			                    format: '{point.y}'
+	  			                }
+	  			            }
+	  			        },
+
+	  			        tooltip: {
+	  			            headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
+	  			            pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y}</b> Count<br/>'
+	  			        },
+
+	  			        series: [{
+	  			            name: "Tenders",
+	  			            colorByPoint: true,
+	  			            data: [{
+	  			                name: "All Tenders Till Now",
+	  			                y: $scope.details.AllWorkCount + $scope.details.AllTendersCount,
+	  			                color: '#cc5100'	  			                
+	  			            }, {
+	  			                name: "New Tenders",
+	  			                y: $scope.details.NewTenderCount,
+	  			                color: '#ffff33'
+	  			            },
+	  			           {
+	  			                name: "Tenders In process",
+	  			                y: $scope.details.InProcessTenderCount,
+	  			                color: '#ff9900'
+	  			            },
+	  			          {
+	  			                name: "Tenders Completed",
+	  			                y: $scope.details.AllWorkCount,
+	  			                color: '#48d148'
+	  			            },
+	  			           {
+	  			                name: "Disqualified Tenders",
+	  			                y: $scope.details.DisQualifiedTenderCount,
+	  			                color: '#ff0000'
+	  			            }]
+	  			        }]
+	  			    });
+	  			});
+	  			
+	  			//----Fifth chart ends--------
+	  			
+	  		  }, function errorCallback(response) {
+
+	  		  });
+      })
+
+	
+	
+}]);
 	    
 app.directive('ngConfirmClick', [
                                   function(){

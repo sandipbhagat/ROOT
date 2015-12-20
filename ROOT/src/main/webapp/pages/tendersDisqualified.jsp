@@ -20,7 +20,7 @@ for(Cookie cookie : cookies){
 		<li><a href="#/worksinprocess">Works In Process</a></li>
 		<li><a href="#/workscompleted">Works Completed</a></li>
 		<li  class="current"><a href="#/tendersdisqualified">Disqualified</a></li>
-		<li><a href="#">Analysis</a></li>
+		<li><a href="#/analysis">Analysis</a></li>
 		<li><a href="logout">Logout</a></li>
 		<%} else { %>
 				<li ><a href="#/loginpanel">Login</a></li>			

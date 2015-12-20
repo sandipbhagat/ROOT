@@ -135,6 +135,11 @@ for(Cookie cookie : cookies){
 			 
 	<script data-require="ui-bootstrap@0.11.0" data-semver="0.11.0" src="assets/js/ui-bootstrap-tpls-0.11.0.min.js"></script>
     <script data-require="lodash.js@3.10.0" data-semver="3.10.0" src="assets/js/lodash.js"></script>
+    
+    <!-- Highcharts imports -->
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+	<script src="https://code.highcharts.com/modules/data.js"></script>
+	<script src="https://code.highcharts.com/modules/drilldown.js"></script>
 
 	</body>
 </html>

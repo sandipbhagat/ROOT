@@ -23,7 +23,7 @@
 		<li><a href="#/worksinprocess">Works In Process</a></li>
 		<li><a href="#/workscompleted">Works Completed</a></li>
 		<li><a href="#/tendersdisqualified">Disqualified</a></li>
-		<li><a href="#">Analysis</a></li>
+		<li><a href="#/analysis">Analysis</a></li>
 		<li><a href="logout">Logout</a></li>
 		<%
 			} else {
