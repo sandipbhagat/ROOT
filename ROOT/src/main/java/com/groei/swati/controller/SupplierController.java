@@ -1,3 +1,4 @@
+
 package com.groei.swati.controller;
 
 import java.util.List;
@@ -18,7 +19,7 @@ import com.groei.swati.model.Supplier;
 import com.groei.swati.services.WorkServices;
 
 @Controller
-@RequestMapping("/supplier")
+@RequestMapping("/suppliers")
 public class SupplierController {
 
 	@Autowired

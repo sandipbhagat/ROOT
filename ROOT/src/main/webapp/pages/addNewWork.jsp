@@ -164,6 +164,23 @@ for(Cookie cookie : cookies){
 						<button type="submit" class="btn btn-primary" ng-click="submitForm(selectedWork)">Update work!</button>
  
 					</form>
+					
+					<h3>
+						<font color="#ff3333"> Suppliers</font>
+					</h3>
+					<fieldset  data-ng-repeat="supplier in suppliers">
+				      <input type="text" ng-model="supplier.nameOfSupplier" name="" placeholder="Name of Supplier">
+				      <input type="text" ng-model="supplier.addressOfSupplier" name="" placeholder="Address of Supplier">
+				      <input type="text" ng-model="supplier.phoneNumber" name="" placeholder="Phone no">
+				      <input type="text" ng-model="supplier.email" name="" placeholder="email">
+				      <input type="text" ng-model="supplier.finalValueOfOrder" name="" placeholder="Final Value Of Order">
+				      <input type="text" ng-model="supplier.paymentTerms" name="" placeholder="Payment Terms">
+				      <button class="remove"  ng-if="supplier.id" ng-click="removeSupplierChoice($index,supplier.id)">-</button>
+				      <button class="add"  ng-if="!supplier.id" >+</button>
+				      <button class="remove"  ng-if="!supplier.id" ng-click="removeSupplier($index)">-</button>
+				   </fieldset>
+				   <button class="addfields" ng-click="addNewSupplierChoice()">Add field</button>
+				   <button class="addfields" ng-click="saveAllSuppliers(suppliers)">Save All</button>
 
 				</section>
 

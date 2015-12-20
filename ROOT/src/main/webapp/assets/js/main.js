@@ -114,7 +114,7 @@ var app = angular.module('swatielectrotech', [
                                      .when("/workDetails", {templateUrl: "pages/workdetails.jsp", controller: "workDetailsCtrl"})
                                      .when("/worksinprocess", {templateUrl: "pages/worksinprocess.jsp", controller: "worksCtrl"})
                                      .when("/workscompleted", {templateUrl: "pages/workscompleted.jsp", controller: "worksCompletedCtrl"})
-                                     .when("/addnewwork", {templateUrl: "pages/addNewWork.jsp", controller: "PageCtrl"})
+                                     .when("/addnewwork", {templateUrl: "pages/addNewWork.jsp", controller: "workDetailsCtrl"})
                                      // else 404 
                                      .otherwise("/404", {templateUrl: "partials/404.html", controller: "PageCtrl"});
                                  }]);
@@ -933,6 +933,97 @@ var app = angular.module('swatielectrotech', [
     	  		  });
 	        
 	        };
+	        
+		      //--- To Add Suppliers-------					        
+	        
+	        $scope.suppliers = [{tempid: 'choice1'}];
+
+			        $( function (){
+			    	  $http({
+		    	  		  method: 'GET',
+		    	  		  url: '/suppliers/getSuppliers/'+$scope.selectedWork.id,
+				          headers : {'Content-Type': 'application/x-www-form-urlencoded'} 
+		    	  		}).then(function successCallback(response) {
+		    	  			//alert("Tender Successfully Created !!");
+		    	  			//$scope.parties.splice(index,1);
+		    	  			//$location.path('/newtenders');
+		    	  			$scope.suppliers = response.data;
+		    	  		  }, function errorCallback(response) {
+		    	  			//alert("Failed to Create !!");	
+		    	  		  });
+			        })			        	
+	        	
+	    	  
+	        $scope.addNewSupplierChoice = function() {
+	          var newItemNo = $scope.suppliers.length+1;
+	          $scope.suppliers.push({'tempid':'choice'+newItemNo});
+	        };
+	        
+	        $scope.saveAllSuppliers = function(suppliers) {
+				      for (var i=0 ; i < suppliers.length ; i++) {
+				    	  
+			    		  if(typeof(suppliers[i].id) === "undefined" )
+		    			  {
+					    	  var data = $.param({
+				    		  		"workId": $scope.selectedWork.id,
+				    		  		"nameOfSupplier" : suppliers[i].nameOfSupplier,
+				    		  		"addressOfSupplier" : suppliers[i].addressOfSupplier,
+				    		  		"phoneNumber" : suppliers[i].phoneNumber,
+				    		  		"email" : suppliers[i].email,
+				    		  		"finalValueOfOrder" : suppliers[i].finalValueOfOrder,
+				    		  		"paymentTerms" : suppliers[i].paymentTerms
+							   });
+		    			  }
+			    		  else
+				    		{
+					    	  var data = $.param({
+					    		  		"workId": $scope.selectedWork.id,
+					    		  		"id" : suppliers[i].id,
+					    		  		"nameOfSupplier" : suppliers[i].nameOfSupplier,
+					    		  		"addressOfSupplier" : suppliers[i].addressOfSupplier,
+					    		  		"phoneNumber" : suppliers[i].phoneNumber,
+					    		  		"email" : suppliers[i].email,
+					    		  		"finalValueOfOrder" : suppliers[i].finalValueOfOrder,
+					    		  		"paymentTerms" : suppliers[i].paymentTerms
+								   });
+				    		}
+				    	  
+				    	  $http({
+			    	  		  method: 'POST',
+			    	  		  url: '/suppliers/addorupdate',
+					          data    : data, //forms user object
+					          headers : {'Content-Type': 'application/x-www-form-urlencoded'} 
+			    	  		}).then(function successCallback(response) {
+			    	  			//alert("Tender Successfully Created !!");
+			    	  			//$scope.parties.splice(index,1);
+			    	  			//$location.path('/newtenders');
+			    	  		  }, function errorCallback(response) {
+			    	  			//alert("Failed to Create !!");	
+			    	  		  });	
+					}
+				    // To Update  Contact Persons  
+				      $route.reload();
+		        };
+	          
+	        $scope.removeSupplierChoice = function(index,id) {
+		        $http({
+	    	  		  method: 'GET',
+	    	  		  url: '/suppliers/delete/'+id,
+			          headers : {'Content-Type': 'application/x-www-form-urlencoded'} 
+	    	  		}).then(function successCallback(response) {
+	    	  			//alert("Tender Successfully Created !!");
+	    	  			$scope.suppliers.splice(index,1);
+	    	  			//$location.path('/newtenders');
+	    	  		  }, function errorCallback(response) {
+	    	  			//alert("Failed to Create !!");	
+	    	  		  });				          
+	        };
+	        
+	        $scope.removeSupplier = function(index) {
+	        	$scope.suppliers.splice(index,1);
+	        };
+	        
+	        //---- Add Suppliers ends here
 
 	}]);  
 	    

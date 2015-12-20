@@ -19,7 +19,7 @@ import com.groei.swati.model.Supplier;
 import com.groei.swati.services.WorkServices;
 
 @Controller
-@RequestMapping("/payment")
+@RequestMapping("/payments")
 public class PaymentController {
 
 	@Autowired
