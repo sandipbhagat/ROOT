@@ -169,6 +169,7 @@ for(Cookie cookie : cookies){
 						<font color="#ff3333"> Suppliers</font>
 					</h3>
 					<fieldset  data-ng-repeat="supplier in suppliers">
+					ID:{{supplier.id}}
 				      <input type="text" ng-model="supplier.nameOfSupplier" name="" placeholder="Name of Supplier">
 				      <input type="text" ng-model="supplier.addressOfSupplier" name="" placeholder="Address of Supplier">
 				      <input type="text" ng-model="supplier.phoneNumber" name="" placeholder="Phone no">
@@ -177,10 +178,30 @@ for(Cookie cookie : cookies){
 				      <input type="text" ng-model="supplier.paymentTerms" name="" placeholder="Payment Terms">
 				      <button class="remove"  ng-if="supplier.id" ng-click="removeSupplierChoice($index,supplier.id)">-</button>
 				      <button class="add"  ng-if="!supplier.id" >+</button>
-				      <button class="remove"  ng-if="!supplier.id" ng-click="removeSupplier($index)">-</button>
+				      <button class="remove"  ng-if="!supplier.id" ng-click="removeSupplier($index)">-</button>			   				      
 				   </fieldset>
 				   <button class="addfields" ng-click="addNewSupplierChoice()">Add field</button>
 				   <button class="addfields" ng-click="saveAllSuppliers(suppliers)">Save All</button>
+				   
+				  <!-- Payments per suppliers -->
+				  <h3>
+						<font color="#ff3333"> Payments</font>
+					</h3>
+				      
+				      <fieldset  data-ng-repeat="payment in payments">
+				      <select ng-model="payment.supplierId"  ng-options="payment.id as payment.id for payment in suppliers"></select>
+				      <select ng-model="payment.nameOfSupplier"  ng-options="payment.nameOfSupplier as payment.nameOfSupplier for payment in suppliers"></select>
+				      <input type="date" ng-model="payment.dateOfPayment" name="" placeholder="Date of Payment">
+				      <input type="text" ng-model="payment.natureOfExpense" name="" placeholder="Nature Of Expense">
+				      <input type="text" ng-model="payment.amount" name="" placeholder="Amount">
+				      <button class="remove"  ng-if="payment.id" ng-click="removePaymentChoice($index,payment.id)">-</button>
+				      <button class="add"  ng-if="!payment.id" >+</button>
+				      <button class="remove"  ng-if="!payment.id" ng-click="removePayment($index)">-</button>
+				   </fieldset>
+				   <button class="addfields" ng-click="addNewPaymentChoice()">Add payment field</button>
+				   <button class="addfields" ng-click="saveAllPayments(payments)">Save All Payment</button>
+				   
+				   <!-- Payments per suppliers Ends -->
 
 				</section>
 

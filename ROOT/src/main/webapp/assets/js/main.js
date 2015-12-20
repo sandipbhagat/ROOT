@@ -1024,6 +1024,112 @@ var app = angular.module('swatielectrotech', [
 	        };
 	        
 	        //---- Add Suppliers ends here
+	        
+	        //--- To Add Payments-------					        
+	        
+	        $scope.payments = [{tempid: 'choice1'}];
+
+			        $( function (){
+			    	  $http({
+		    	  		  method: 'GET',
+		    	  		  url: '/payments/getpayments/'+$scope.selectedWork.id,
+				          headers : {'Content-Type': 'application/x-www-form-urlencoded'} 
+		    	  		}).then(function successCallback(response) {
+		    	  			//alert("Tender Successfully Created !!");
+		    	  			//$scope.parties.splice(index,1);
+		    	  			//$location.path('/newtenders');
+		    	  			$scope.payments = [];
+		    	  			$scope.unformattedpayments = response.data;
+		    	  			if($scope.unformattedpayments !== null)
+		    				   {
+		    	  				 for(var i=0; i < $scope.unformattedpayments.length; i++ )
+						    	  {
+		    	  					$scope.payments[i] = {
+		    	  							workId: $scope.unformattedpayments[i].workId,
+						    		  		supplierId : $scope.unformattedpayments[i].supplierId,
+						    		  		id : $scope.unformattedpayments[i].id,
+						    		  		nameOfSupplier : $scope.unformattedpayments[i].nameOfSupplier,
+						    		  		dateOfPayment : new Date(formatDate($scope.unformattedpayments[i].dateOfPayment)),
+						    		  		natureOfExpense : $scope.unformattedpayments[i].natureOfExpense,
+						    		  		amount : $scope.unformattedpayments[i].amount
+		    	  					}
+						    	  }
+		    				   }
+		    	  		  }, function errorCallback(response) {
+		    	  			//alert("Failed to Create !!");	
+		    	  		  });
+			        })			        	
+	        	
+	    	  
+	        $scope.addNewPaymentChoice = function() {
+	          var newItemNo = $scope.payments.length+1;
+	          $scope.payments.push({'tempid':'choice'+newItemNo});
+	        };
+	        
+	        $scope.saveAllPayments = function(payments) {
+				      for (var i=0 ; i < payments.length ; i++) {
+				    	  
+			    		  if(typeof(payments[i].id) === "undefined" )
+		    			  {
+					    	  var data = $.param({
+				    		  		"workId": $scope.selectedWork.id,
+				    		  		"supplierId" : payments[i].supplierId,
+				    		  		"nameOfSupplier" : payments[i].nameOfSupplier,
+				    		  		"dateOfPayment" : formatDate(payments[i].dateOfPayment),
+				    		  		"natureOfExpense" : payments[i].natureOfExpense,
+				    		  		"amount" : payments[i].amount
+							   });
+		    			  }
+			    		  else
+				    		{
+					    	  var data = $.param({
+					    		  		"workId": $scope.selectedWork.id,
+					    		  		"supplierId" : payments[i].supplierId,
+					    		  		"id" : payments[i].id,
+					    		  		"nameOfSupplier" : payments[i].nameOfSupplier,
+					    		  		"dateOfPayment" : formatDate(payments[i].dateOfPayment),
+					    		  		"natureOfExpense" : payments[i].natureOfExpense,
+					    		  		"amount" : payments[i].amount
+
+								   });
+				    		}
+				    	  
+				    	  $http({
+			    	  		  method: 'POST',
+			    	  		  url: '/payments/addorupdate',
+					          data    : data, //forms user object
+					          headers : {'Content-Type': 'application/x-www-form-urlencoded'} 
+			    	  		}).then(function successCallback(response) {
+			    	  			//alert("Tender Successfully Created !!");
+			    	  			//$scope.parties.splice(index,1);
+			    	  			//$location.path('/newtenders');
+			    	  		  }, function errorCallback(response) {
+			    	  			//alert("Failed to Create !!");	
+			    	  		  });	
+					}
+				    // To Update  Contact Persons  
+				      $route.reload();
+		        };
+	          
+	        $scope.removePaymentChoice = function(index,id) {
+		        $http({
+	    	  		  method: 'GET',
+	    	  		  url: '/payments/delete/'+id,
+			          headers : {'Content-Type': 'application/x-www-form-urlencoded'} 
+	    	  		}).then(function successCallback(response) {
+	    	  			//alert("Tender Successfully Created !!");
+	    	  			$scope.payments.splice(index,1);
+	    	  			//$location.path('/newtenders');
+	    	  		  }, function errorCallback(response) {
+	    	  			//alert("Failed to Create !!");	
+	    	  		  });				          
+	        };
+	        
+	        $scope.removePayment = function(index) {
+	        	$scope.payments.splice(index,1);
+	        };
+	        
+	        //---- Add Payments ends here
 
 	}]);  
 	    

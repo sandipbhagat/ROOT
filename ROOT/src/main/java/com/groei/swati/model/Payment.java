@@ -27,7 +27,7 @@ public class Payment implements Serializable{
 	private int workId;
 	
 	@Column(name="nameOfSupplier")
-	private String supplierName;
+	private String nameOfSupplier;
 	
 	@Column(name = "dateOfPayment")
 	private Date dateOfPayment;
@@ -48,15 +48,6 @@ public class Payment implements Serializable{
 		this.workId = workId;
 	}
 
-	public String getSupplierName() {
-		return supplierName;
-	}
-
-	public void setSupplierName(String supplierName) {
-		this.supplierName = supplierName;
-	}
-
-
 	public int getId() {
 		return id;
 	}
@@ -71,6 +62,14 @@ public class Payment implements Serializable{
 
 	public void setSupplierId(int supplierId) {
 		this.supplierId = supplierId;
+	}
+	
+	public String getNameOfSupplier() {
+		return nameOfSupplier;
+	}
+
+	public void setNameOfSupplier(String nameOfSupplier) {
+		this.nameOfSupplier = nameOfSupplier;
 	}
 
 	public Date getDateOfPayment() {
